@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox prefHeight="768.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.FinesManagementController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+
+   <!-- Header -->
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <Label style="-fx-font-weight: bold; -fx-font-size: 24px; -fx-text-fill: #111827;" text="Fines Management" />
+   </HBox>
+   <!-- Summary Cards -->
+   <HBox spacing="20.0" alignment="CENTER_LEFT">
+       <!-- Blue Card: Tổng tiền đã thu -->
+       <VBox style="-fx-background-color: #2563EB; -fx-background-radius: 8; -fx-padding: 15 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" prefWidth="280">
+           <Label text="Tổng tiền đã thu" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px; -fx-font-weight: bold;"/>
+           <HBox alignment="CENTER_LEFT">
+               <Label fx:id="lblTotalCollected" text="0 đ" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+               <Region HBox.hgrow="ALWAYS"/>
+               <Label text="💰" style="-fx-font-size: 36px; -fx-text-fill: rgba(255,255,255,0.5);"/>
+           </HBox>
+       </VBox>
+
+       <!-- Red Card: Số người chưa nộp -->
+       <VBox style="-fx-background-color: #DC2626; -fx-background-radius: 8; -fx-padding: 15 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" prefWidth="280">
+           <Label text="Số người chưa nộp" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px; -fx-font-weight: bold;"/>
+           <HBox alignment="CENTER_LEFT">
+               <Label fx:id="lblUnpaidMembers" text="0" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+               <Region HBox.hgrow="ALWAYS"/>
+               <Label text="⚠️" style="-fx-font-size: 36px; -fx-text-fill: rgba(255,255,255,0.5);"/>
+           </HBox>
+       </VBox>
+   </HBox>
+
+   <!-- Action Bar -->
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <Button mnemonicParsing="false" onAction="#handleRefresh" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8 15; -fx-cursor: hand; -fx-font-weight: bold;" text="🔄 Refresh" />
+      
+      <Region HBox.hgrow="ALWAYS" />
+      
+      <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 5 15;">
+          <Label text="🔍" style="-fx-text-fill: -color-fg-muted;"/>
+          <TextField fx:id="txtSearch" prefWidth="250.0" promptText="Search member, book..." style="-fx-background-color: transparent; -fx-border-color: transparent;"/>
+      </HBox>
+   </HBox>
+
+   <!-- Table Card -->
+   <VBox styleClass="card" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+       <TableView fx:id="tableFines" VBox.vgrow="ALWAYS" style="-fx-border-color: transparent;">
+         <columns>
+           <TableColumn fx:id="colFineId" prefWidth="60.0" text="ID" />
+           <TableColumn fx:id="colMemberCode" prefWidth="100.0" text="Member Code" />
+           <TableColumn fx:id="colMemberName" prefWidth="150.0" text="Member Name" />
+           <TableColumn fx:id="colBookTitle" prefWidth="180.0" text="Book" />
+           <TableColumn fx:id="colFineType" prefWidth="100.0" text="Type" />
+           <TableColumn fx:id="colAmount" prefWidth="100.0" text="Total Amount" />
+           <TableColumn fx:id="colPaidAmount" prefWidth="100.0" text="Paid Amount" />
+           <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
+           <TableColumn fx:id="colIssuedAt" prefWidth="120.0" text="Issued At" />
+           <TableColumn fx:id="colActions" prefWidth="100.0" text="Actions" />
+         </columns>
+       </TableView>
+   </VBox>
+</VBox>

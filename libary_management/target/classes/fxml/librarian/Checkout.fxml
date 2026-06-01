@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.CheckoutController" 
+      spacing="20" style="-fx-padding: 30; -fx-background-color: -color-bg-canvas;">
+      
+
+    
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Column 1: Select Member -->
+        <VBox spacing="15" prefWidth="320" minWidth="300" styleClass="card">
+            <Label text="Select Member" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtMemberCode" promptText="Scan Barcode or enter code..." HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/>
+                <Button text="Search" fx:id="btnSearchMember" styleClass="accent" />
+            </HBox>
+            
+            <VBox style="-fx-background-color: -color-bg-subtle; -fx-border-color: -color-border-default; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 15;" spacing="15">
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <!-- Avatar placeholder -->
+                    <Label fx:id="lblAvatar" text="👤" style="-fx-font-size: 45px; -fx-text-fill: -color-accent-fg;" visible="false" managed="false"/>
+                    <VBox spacing="3">
+                        <Label fx:id="lblMemberName" text="-" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                        <Label fx:id="lblMemberType" text="-" style="-fx-text-fill: -color-accent-fg; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                        <Label fx:id="lblMemberStatus" text="-" style="-fx-text-fill: -color-success-emphasis; -fx-font-weight: bold;"/>
+                    </VBox>
+                </HBox>
+                <VBox spacing="5" style="-fx-padding: 10 0 0 0; -fx-border-color: -color-border-default transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+                    <HBox>
+                        <Label text="Max Borrow:" style="-fx-text-fill: -color-fg-muted;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblMaxBooks" text="-" style="-fx-font-weight: bold;"/>
+                        <Label text=" books" style="-fx-text-fill: -color-fg-muted;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+            
+            <!-- Cảnh báo thẻ bị khóa -->
+            <Label fx:id="lblMemberWarning" text="Warning message" 
+                   style="-fx-text-fill: -color-danger-emphasis; -fx-font-weight: bold;" visible="false" managed="false" wrapText="true"/>
+        </VBox>
+        
+        <!-- Column 2: Select Book Copy -->
+        <VBox fx:id="boxBookScanning" styleClass="card" spacing="15" HBox.hgrow="ALWAYS" disable="true">
+            <Label text="Select Book Copy" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBookBarcode" promptText="Scan barcode or enter barcode..." HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/>
+                <Label text="🔍" style="-fx-text-fill: -color-fg-muted; -fx-font-size: 16px;"/>
+            </HBox>
+            
+            <ListView fx:id="listBorrowBooks" VBox.vgrow="ALWAYS" style="-fx-background-radius: 5; -fx-border-color: transparent; -fx-background-color: transparent;" styleClass="edge-to-edge"/>
+        </VBox>
+        
+        <!-- Column 3: Borrow Information -->
+        <VBox spacing="15" prefWidth="280" minWidth="250" styleClass="card">
+            <Label text="Borrow Information" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            
+            <VBox spacing="5">
+                <Label text="Borrow Date" style="-fx-text-fill: -color-fg-muted; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                <DatePicker fx:id="dpBorrowDate" promptText="dd/MM/yyyy" maxWidth="Infinity" style="-fx-background-radius: 5;"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Due Date" style="-fx-text-fill: -color-fg-muted; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                <DatePicker fx:id="dpDueDate" promptText="dd/MM/yyyy" maxWidth="Infinity" style="-fx-background-radius: 5;"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Notes" style="-fx-text-fill: -color-fg-muted; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                <TextArea fx:id="txtNotes" promptText="Optional notes..." prefRowCount="4" wrapText="true" style="-fx-background-radius: 5;"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <VBox spacing="10">
+                <Button text="Borrow" fx:id="btnConfirmBorrow" styleClass="success" maxWidth="Infinity" prefHeight="40" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <!-- Optional Cancel button if needed by functionality, but let's make it outlined to not distract from Borrow -->
+                <Button text="Cancel" fx:id="btnCancel" styleClass="button-outlined" maxWidth="Infinity" prefHeight="40" style="-fx-font-weight: bold;"/>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

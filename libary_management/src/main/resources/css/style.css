@@ -1,0 +1,207 @@
+/* e:\Project2\libary_management\src\main\resources\css\style.css */
+.card {
+    background-color: white; 
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    border-color: #E5E7EB;
+    -fx-border-color: #E5E7EB;
+    border-radius: 8px;
+    -fx-border-radius: 8px;
+    border-width: 1px;
+    -fx-border-width: 1px;
+    padding: 20px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 10, 0, 0, 4);
+}
+
+.card-title {
+    font-size: 14px;
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-fg-muted;
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
+
+.card-value {
+    font-size: 28px;
+    -fx-font-size: 28px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-accent-emphasis;
+}
+
+.danger-card-value {
+    -fx-text-fill: -color-danger-emphasis;
+}
+
+/* Original Sidebar */
+.sidebar {
+    background-color: -color-bg-subtle;
+    -fx-background-color: -color-bg-subtle;
+    border-color: transparent -color-border-default transparent transparent;
+    -fx-border-color: transparent -color-border-default transparent transparent;
+    border-width: 1px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 2, 0);
+}
+
+.sidebar-btn {
+    -fx-alignment: center-left;
+    font-size: 15px;
+    -fx-font-size: 15px;
+    padding: 12 20 12 20;
+    -fx-padding: 12 20 12 20;
+    -fx-background-radius: 8px;
+    background-color: transparent;
+    -fx-background-color: transparent;
+    cursor: hand;
+    -fx-cursor: hand;
+    -fx-text-fill: -color-fg-default;
+}
+.sidebar-btn:hover {
+    background-color: -color-bg-inset;
+    -fx-background-color: -color-bg-inset;
+}
+.sidebar-btn.selected {
+    background-color: -color-accent-subtle;
+    -fx-background-color: -color-accent-subtle;
+    -fx-text-fill: -color-accent-emphasis;
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
+
+/* NEW Dark Sidebar Styles */
+.sidebar-dark {
+    -fx-background-color: #111827; /* Exact dark blue/black from image */
+}
+
+.sidebar-btn-dark {
+    -fx-alignment: center-left;
+    -fx-font-size: 15px;
+    -fx-padding: 14 15 14 20;
+    -fx-background-radius: 8px;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: #9CA3AF; /* Light gray text */
+}
+.sidebar-btn-dark:hover {
+    -fx-background-color: #1F2937;
+    -fx-text-fill: white;
+}
+.sidebar-btn-dark.selected {
+    -fx-background-color: #1C64F2; /* Exact blue from image */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Page Titles */
+.page-title {
+    font-size: 20px;
+    -fx-font-size: 20px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.section-title {
+    font-size: 16px;
+    -fx-font-size: 16px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+}
+
+/* Member Management Custom Styles */
+.summary-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+}
+.summary-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+.summary-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+.card-blue { -fx-border-color: #1976D2; -fx-border-width: 0 0 0 4px; -fx-border-radius: 8px; }
+.card-red { -fx-border-color: #D32F2F; -fx-border-width: 0 0 0 4px; -fx-border-radius: 8px; }
+.card-yellow { -fx-border-color: #FBC02D; -fx-border-width: 0 0 0 4px; -fx-border-radius: 8px; }
+
+.summary-icon-blue { -fx-icon-color: #1976D2; }
+.summary-icon-red { -fx-icon-color: #D32F2F; }
+.summary-icon-yellow { -fx-icon-color: #FBC02D; }
+
+.filter-container {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+}
+.search-box {
+    -fx-background-color: #F3F4F6;
+    -fx-padding: 5 15 5 15;
+    -fx-background-radius: 20px;
+}
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-prompt-text-fill: -color-fg-muted;
+}
+.search-icon {
+    -fx-icon-color: -color-fg-muted;
+}
+
+/* Badges */
+.badge {
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: 15px;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+.badge-active {
+    -fx-background-color: #DEF7EC;
+    -fx-text-fill: #03543F;
+}
+.badge-expired {
+    -fx-background-color: #FDE8E8;
+    -fx-text-fill: #9B1C1C;
+}
+.badge-suspended {
+    -fx-background-color: #FEF08A;
+    -fx-text-fill: #713F12;
+}
+
+/* Action Buttons */
+.btn-action {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 6px;
+    -fx-background-radius: 5px;
+}
+.btn-action:hover {
+    -fx-background-color: -color-bg-inset;
+}
+.btn-edit { -fx-icon-color: #1976D2; -fx-text-fill: #1976D2; }
+.btn-delete { -fx-icon-color: #D32F2F; -fx-text-fill: #D32F2F; }
+.btn-renew { -fx-icon-color: #388E3C; -fx-text-fill: #388E3C; }
+.btn-confirm { -fx-icon-color: #FBC02D; -fx-text-fill: #FBC02D; }
+
+/* TableView container override */
+.table-container {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+}
+.table-view {
+    -fx-background-color: transparent;
+}

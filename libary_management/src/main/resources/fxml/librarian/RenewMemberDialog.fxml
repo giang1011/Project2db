@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.RenewMemberDialogController"
+      spacing="15" style="-fx-padding: 20;">
+
+    <Label text="Gia Hạn Thẻ Thành Viên" styleClass="section-title"/>
+
+    <GridPane hgap="10" vgap="15">
+        <columnConstraints>
+            <ColumnConstraints minWidth="120"/>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="250"/>
+        </columnConstraints>
+
+        <!-- Read-Only Info -->
+        <Label text="Mã độc giả:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtMemberCode" editable="false" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Họ và tên:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtFullName" editable="false" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Trạng thái hiện tại:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtStatus" editable="false" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Ngày hết hạn cũ:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtOldEndDate" editable="false" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <!-- Interactive Fields -->
+        <Label text="Số tháng gia hạn:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="txtMonths" promptText="Nhap so thang gia han (vd: 1, 3, 6, 12...)" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="Số tiền thu (VND):" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="txtAmount" promptText="So tien phai nop" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Hủy" fx:id="btnCancel" onAction="#handleCancel"/>
+        <Button text="Xác nhận gia hạn" fx:id="btnConfirm" onAction="#handleConfirm" styleClass="btn-primary"/>
+    </HBox>
+</VBox>

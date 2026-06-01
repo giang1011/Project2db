@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="com.library.controller.MainController" stylesheets="@../../css/style.css">
+    
+    <left>
+        <VBox styleClass="sidebar-dark" prefWidth="260.0" spacing="8">
+            <padding><Insets top="30" right="15" bottom="20" left="15"/></padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding: 0 0 30 5;">
+                <Label text="📖" style="-fx-font-size: 26px; -fx-text-fill: white; -fx-background-color: #1C64F2; -fx-background-radius: 8px; -fx-padding: 6px 12px;"/>
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="LIBRARY" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="MANAGEMENT" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                </VBox>
+            </HBox>
+            
+            <Button fx:id="btnDashboard" text="  🎛   Dashboard" styleClass="sidebar-btn-dark selected" maxWidth="Infinity" onAction="#showDashboard"/>
+            <Button fx:id="btnManageBooks" text="  📚   Books" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showManageBooks"/>
+            <Button fx:id="btnAddBook" text="  ➕   Add Book" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showAddBook"/>
+            <Button fx:id="btnMembers" text="  👥   Members" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showMembers"/>
+            <Button fx:id="btnCheckout" text="  📤   Borrow Book" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showCheckout"/>
+            <Button fx:id="btnCheckin" text="  📥   Return Book" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showCheckin"/>
+            <Button fx:id="btnFines" text="  💰   Fines" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showFines"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="  🚪   Logout" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <VBox>
+            <!-- Top Header -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 15px 30px; -fx-border-color: transparent transparent #E5E7EB transparent; -fx-border-width: 0 0 1px 0;">
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox alignment="CENTER_RIGHT" spacing="15">
+                    <VBox alignment="CENTER_RIGHT">
+                        <Label text="Admin User" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                        <Label text="ADMIN" style="-fx-text-fill: -color-fg-muted; -fx-font-size: 11px;"/>
+                    </VBox>
+                    <Label text="👤" style="-fx-font-size: 30px; -fx-text-fill: -color-accent-fg; -fx-background-color: -color-bg-subtle; -fx-background-radius: 50%; -fx-padding: 0 5px;"/>
+                </HBox>
+            </HBox>
+            
+            <!-- Main Content -->
+            <StackPane fx:id="contentArea" style="-fx-background-color: #F3F4F6;" VBox.vgrow="ALWAYS">
+                <!-- Child views (Dashboard, Checkout, etc.) will be dynamically loaded here by the Controller -->
+            </StackPane>
+        </VBox>
+    </center>
+</BorderPane>

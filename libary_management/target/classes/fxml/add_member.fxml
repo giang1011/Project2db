@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefWidth="600.0" spacing="15.0" styleClass="background" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.AddMemberController">
+   <children>
+      <Label style="-fx-font-weight: bold; -fx-font-size: 20px;" text="Them Thanh Vien Moi" textFill="#2c3e50" />
+      <Separator prefWidth="200.0" />
+      <GridPane hgap="10.0" vgap="10.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="151.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="10.0" prefWidth="419.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+
+            <Label text="Ho Ten (*):" GridPane.rowIndex="1" />
+            <TextField fx:id="txtFullName" promptText="Nhap ho ten" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label text="Email:" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmail" promptText="Nhap email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <Label text="So Dien Thoai:" GridPane.rowIndex="3" />
+            <TextField fx:id="txtPhone" promptText="Nhap so dien thoai" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            
+            <Label text="Loai Thanh Vien (*):" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cbMemberType" prefWidth="200.0" promptText="Chon loai" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            
+            <Label text="Ngay Sinh:" GridPane.rowIndex="5" />
+            <DatePicker fx:id="dpDateOfBirth" prefWidth="200.0" promptText="Chon ngay sinh" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            
+            <Label text="Dia Chi:" GridPane.rowIndex="6" />
+            <TextArea fx:id="txtAddress" prefHeight="60.0" prefWidth="200.0" promptText="Nhap dia chi" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            
+            <Label text="Ngay Dang Ky (*):" GridPane.rowIndex="7" />
+            <DatePicker fx:id="dpMembershipStartDate" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            
+            <Label text="Ngay Het Han (*):" GridPane.rowIndex="8" />
+            <DatePicker fx:id="dpMembershipEndDate" prefWidth="200.0" promptText="Chon ngay het han" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+         </children>
+      </GridPane>
+      
+      <!-- Student Info Section -->
+      <VBox fx:id="vboxStudentInfo" spacing="10.0" style="-fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 10;">
+         <children>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: #2980b9;" text="Thong Tin Sinh Vien" />
+            <GridPane hgap="10.0" vgap="10.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="138.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="412.0" minWidth="10.0" prefWidth="412.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Ten Truong (*):" />
+                  <TextField fx:id="txtSchoolName" promptText="Nhap ten truong" GridPane.columnIndex="1" />
+                  
+                  <Label text="Ma Sinh Vien (*):" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtStudentCode" promptText="Nhap ma sinh vien" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+         <children>
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" styleClass="btn-secondary" text="Huy" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#handleSave" prefWidth="100.0" styleClass="btn-primary" text="Luu" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

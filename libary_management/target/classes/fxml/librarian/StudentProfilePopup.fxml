@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.StudentProfilePopupController" 
+      spacing="20" style="-fx-padding: 30; -fx-background-color: -color-bg-default;" prefWidth="550">
+      
+    <Label text="Duyệt Hồ Sơ Sinh Viên" styleClass="page-title"/>
+    
+    <HBox spacing="20">
+        <!-- Student Card Image Placeholder -->
+        <VBox style="-fx-border-color: -color-border-default; -fx-border-width: 1; -fx-background-color: -color-bg-subtle; -fx-alignment: center; -fx-background-radius: 4; -fx-border-radius: 4;" 
+              prefWidth="200" prefHeight="130">
+            <Label text="[Ảnh Thẻ Sinh Viên]" textAlignment="CENTER" wrapText="true" style="-fx-text-fill: -color-fg-muted;"/>
+        </VBox>
+        
+        <GridPane hgap="15" vgap="10" HBox.hgrow="ALWAYS">
+            <Label text="Mã SV:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblStudentId" text="..." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            
+            <Label text="Họ Tên:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblFullName" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            
+            <Label text="Trường:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblUniversity" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            
+            <Label text="Hết hạn thẻ:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblExpiryDate" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+    </HBox>
+    
+    <Separator/>
+    
+    <VBox spacing="10">
+        <Label text="Hình thức thanh toán (Tạo hóa đơn MembershipPayments):" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="cmbPaymentMethod" promptText="Chọn hình thức (CASH, BANK_TRANSFER, FREE)..." prefWidth="300"/>
+    </VBox>
+    
+    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 10 0 0 0;">
+        <Button text="Từ chối (REJECTED)" fx:id="btnReject" styleClass="danger" prefWidth="150"/>
+        <Button text="Duyệt hồ sơ (VERIFIED)" fx:id="btnVerify" styleClass="success" prefWidth="180"/>
+    </HBox>
+</VBox>

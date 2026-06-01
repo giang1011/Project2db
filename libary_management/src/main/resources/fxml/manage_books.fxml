@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox prefHeight="768.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.BookManagementController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+
+   <!-- Header -->
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <Label style="-fx-font-weight: bold; -fx-font-size: 24px; -fx-text-fill: #111827;" text="Books" />
+   </HBox>
+
+   <!-- Action Bar -->
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <Button mnemonicParsing="false" onAction="#handleRefresh" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8 15; -fx-cursor: hand; -fx-font-weight: bold;" text="🔄 Refresh" />
+      
+      <Region HBox.hgrow="ALWAYS" />
+      
+      <HBox alignment="CENTER_LEFT" spacing="10">
+          <ComboBox fx:id="cmbCategoryFilter" prefWidth="180.0" promptText="Filter by Category" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 20; -fx-background-radius: 20;"/>
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 5 15;">
+          <Label text="🔍" style="-fx-text-fill: -color-fg-muted;"/>
+          <TextField fx:id="txtSearch" prefWidth="200.0" promptText="Search by title, ISBN..." style="-fx-background-color: transparent; -fx-border-color: transparent;"/>
+      </HBox>
+   </HBox>
+
+   <!-- Table Card -->
+   <VBox styleClass="card" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+       <TableView fx:id="tableBooks" VBox.vgrow="ALWAYS" style="-fx-border-color: transparent;">
+         <columns>
+           <TableColumn fx:id="colId" prefWidth="50.0" text="Book ID" />
+           <TableColumn fx:id="colCover" prefWidth="100.0" text="Cover" />
+           <TableColumn fx:id="colIsbn" prefWidth="120.0" text="ISBN" />
+           <TableColumn fx:id="colTitle" prefWidth="220.0" text="Title" />
+           <TableColumn fx:id="colAuthors" prefWidth="150.0" text="Author(s)" />
+           <TableColumn fx:id="colCategories" prefWidth="100.0" text="Category" />
+           <TableColumn fx:id="colPublisher" prefWidth="120.0" text="Publisher" />
+           <TableColumn fx:id="colCopies" prefWidth="80.0" text="Copies" />
+           <TableColumn fx:id="colStatus" prefWidth="120.0" text="Status" />
+           <TableColumn fx:id="colActions" prefWidth="120.0" text="Actions" />
+         </columns>
+       </TableView>
+       
+       <HBox alignment="CENTER_LEFT" style="-fx-padding: 15px; -fx-border-color: #E5E7EB transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+           <Label text="Total books loaded" style="-fx-text-fill: -color-fg-muted; -fx-font-weight: bold;"/>
+       </HBox>
+   </VBox>
+</VBox>

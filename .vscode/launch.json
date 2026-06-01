@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.library/com.library.App",
+            "projectName": "libary_management",
+            "vmArgs": "-Dfile.encoding=UTF-8"
+        }
+    ]
+}
