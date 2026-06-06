@@ -59,8 +59,12 @@ public class LoginController {
                 // Dang nhap thanh cong, luu thong tin vao Session
                 UserSession.getInstance().setLoggedInUser(user);
                 
-                // Chuyen huong den man hinh Dashboard
-                switchToDashboard();
+                // Chuyen huong den man hinh Dashboard theo role
+                if ("ADMIN".equals(user.getRole())) {
+                    switchToAdminDashboard();
+                } else {
+                    switchToDashboard();
+                }
             }
         });
 
@@ -87,7 +91,6 @@ public class LoginController {
             currentStage.close();
 
             // Khoi tao va hien thi Scene Dashboard
-            // NOTE: Duong dan FXML da duoc lay giong het nhu trong file App.java (loadFXML("/fxml/layout/MainLayout"))
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/layout/MainLayout.fxml"));
             Parent root = loader.load();
             
@@ -98,6 +101,26 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Loi chuyen man hinh", "Khong the tai man hinh Dashboard: " + e.getMessage());
+        }
+    }
+
+    private void switchToAdminDashboard() {
+        try {
+            // Dong cua so Login hien tai
+            Stage currentStage = (Stage) btnLogin.getScene().getWindow();
+            currentStage.close();
+
+            // Khoi tao va hien thi Scene Admin Dashboard
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/layout/AdminLayout.fxml"));
+            Parent root = loader.load();
+            
+            Stage dashboardStage = new Stage();
+            dashboardStage.setTitle("Library Management System - Admin Portal");
+            dashboardStage.setScene(new Scene(root, 1280, 800));
+            dashboardStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Loi chuyen man hinh", "Khong the tai man hinh Admin: " + e.getMessage());
         }
     }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.AdminDashboardController" 
+      spacing="20" style="-fx-padding: 30; -fx-background-color: transparent;">
+      
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Admin Dashboard" styleClass="page-title"/>
+    </HBox>
+    
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox style="-fx-background-color: #9333EA; -fx-background-radius: 8px; -fx-padding: 20px; -fx-effect: dropshadow(gaussian, rgba(147,51,234,0.3), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+            <Label text="System Status" style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Online" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="🟢" style="-fx-font-size: 30px; -fx-text-fill: rgba(255,255,255,0.4);"/>
+            </HBox>
+        </VBox>
+    </HBox>
+    
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="15" style="-fx-padding: 20;">
+        <Label text="Welcome to Admin Portal" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <Label text="Select an option from the sidebar to manage the system." style="-fx-font-size: 14px; -fx-text-fill: #6B7280;"/>
+    </VBox>
+</VBox>

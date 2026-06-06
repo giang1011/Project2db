@@ -342,4 +342,50 @@ public class MemberRepository {
             }
         }
     }
+
+    public java.util.List<Member> searchMembers(String keyword) throws SQLException {
+        java.util.List<Member> members = new java.util.ArrayList<>();
+        String query = "SELECT MemberID, MemberCode, FullName, Email, Phone, MemberType, " +
+                       "DateOfBirth, Address, MembershipStartDate, MembershipEndDate, " +
+                       "MaxBorrowBooks, BorrowDurationDays, Status " +
+                       "FROM Members " +
+                       "WHERE FullName LIKE ? OR MemberCode LIKE ? " +
+                       "ORDER BY FullName ASC";
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+             
+            String searchPattern = "%" + keyword + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Member member = new Member();
+                    member.setMemberId(rs.getLong("MemberID"));
+                    member.setMemberCode(rs.getString("MemberCode"));
+                    member.setFullName(rs.getString("FullName"));
+                    member.setEmail(rs.getString("Email"));
+                    member.setPhone(rs.getString("Phone"));
+                    member.setMemberType(rs.getString("MemberType"));
+                    if (rs.getDate("DateOfBirth") != null) {
+                        member.setDateOfBirth(rs.getDate("DateOfBirth").toLocalDate());
+                    }
+                    member.setAddress(rs.getString("Address"));
+                    if (rs.getDate("MembershipStartDate") != null) {
+                        member.setMembershipStartDate(rs.getDate("MembershipStartDate").toLocalDate());
+                    }
+                    if (rs.getDate("MembershipEndDate") != null) {
+                        member.setMembershipEndDate(rs.getDate("MembershipEndDate").toLocalDate());
+                    }
+                    member.setMaxBorrowBooks(rs.getInt("MaxBorrowBooks"));
+                    member.setBorrowDurationDays(rs.getInt("BorrowDurationDays"));
+                    member.setStatus(rs.getString("Status"));
+                    
+                    members.add(member);
+                }
+            }
+        }
+        return members;
+    }
 }

@@ -190,7 +190,7 @@ public class CheckoutController {
                 currentMember = info.member;
                 remainingLimit = info.limit;
 
-                lblMemberName.setText(currentMember.getFullName());
+                lblMemberName.setText(currentMember.getFullName() + " (" + currentMember.getMemberCode() + ")");
                 lblMemberType.setText(currentMember.getMemberType());
                 lblMemberStatus.setText(currentMember.getStatus());
                 lblMaxBooks.setText(String.valueOf(remainingLimit));

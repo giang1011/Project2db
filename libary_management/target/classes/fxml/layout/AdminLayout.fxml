@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="com.library.controller.AdminController" stylesheets="@../../css/style.css">
+    
+    <left>
+        <VBox styleClass="sidebar-dark" prefWidth="260.0" spacing="8">
+            <padding><Insets top="30" right="15" bottom="20" left="15"/></padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding: 0 0 30 5;">
+                <Label text="👑" style="-fx-font-size: 26px; -fx-text-fill: white; -fx-background-color: #9333EA; -fx-background-radius: 8px; -fx-padding: 6px 12px;"/>
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="ADMIN" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="PORTAL" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                </VBox>
+            </HBox>
+            
+            <Button fx:id="btnDashboard" text="  🎛   Dashboard" styleClass="sidebar-btn-dark selected" maxWidth="Infinity" onAction="#showDashboard"/>
+            <Button fx:id="btnUsers" text="  👥   User Management" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showUsers"/>
+            <Button fx:id="btnSettings" text="  ⚙   Settings" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showSettings"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="  🚪   Logout" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <VBox>
+            <!-- Top Header -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 15px 30px; -fx-border-color: transparent transparent #E5E7EB transparent; -fx-border-width: 0 0 1px 0;">
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox alignment="CENTER_RIGHT" spacing="15">
+                    <VBox alignment="CENTER_RIGHT">
+                        <Label fx:id="lblAdminName" text="Administrator" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                        <Label text="ADMIN" style="-fx-text-fill: -color-fg-muted; -fx-font-size: 11px;"/>
+                    </VBox>
+                    <Label text="👑" style="-fx-font-size: 30px; -fx-text-fill: #9333EA; -fx-background-color: -color-bg-subtle; -fx-background-radius: 50%; -fx-padding: 0 5px;"/>
+                </HBox>
+            </HBox>
+            
+            <!-- Main Content -->
+            <StackPane fx:id="contentArea" style="-fx-background-color: #F3F4F6;" VBox.vgrow="ALWAYS">
+                <!-- Child views will be dynamically loaded here by the Controller -->
+            </StackPane>
+        </VBox>
+    </center>
+</BorderPane>

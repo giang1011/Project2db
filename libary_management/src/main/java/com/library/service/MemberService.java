@@ -118,4 +118,13 @@ public class MemberService {
             throw new Exception("Loi CSDL khi xac nhan the: " + e.getMessage(), e);
         }
     }
+
+    public java.util.List<Member> searchMembers(String keyword) throws Exception {
+        try {
+            return memberRepository.searchMembers(keyword);
+        } catch (SQLException e) {
+            logger.error("Loi khi tim kiem doc gia: ", e);
+            throw new Exception("Loi khi tim kiem doc gia.", e);
+        }
+    }
 }
