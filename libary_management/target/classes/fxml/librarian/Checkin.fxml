@@ -26,7 +26,7 @@
             <VBox styleClass="card" spacing="15">
                 <Label text="Search Member" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <TextField fx:id="txtMemberCode" promptText="Enter member code..." prefWidth="300" HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/>
+                    <TextField fx:id="txtMemberCode" promptText="Enter member code or phone..." prefWidth="300" HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/>
                     <Button text="Search" fx:id="btnSearchMember" styleClass="accent"/>
                 </HBox>
                 

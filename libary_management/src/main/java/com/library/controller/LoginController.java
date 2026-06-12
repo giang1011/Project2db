@@ -1,8 +1,9 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import com.library.model.User;
 import com.library.service.AuthService;
 import com.library.util.UserSession;
+import com.library.service.MemberService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -56,10 +57,19 @@ public class LoginController {
             } else if ("INACTIVE".equals(user.getStatus())) {
                 showAlert(Alert.AlertType.ERROR, "Khoa tai khoan", "Tai khoan da bi khoa, khong cho phep vao he thong!");
             } else {
-                // Dang nhap thanh cong, luu thong tin vao Session
+                // Login successful, save info to Session
                 UserSession.getInstance().setLoggedInUser(user);
                 
-                // Chuyen huong den man hinh Dashboard theo role
+                // Silent background scan using Java 21 Virtual Threads
+                Thread.ofVirtual().name("ExpiryScanner").start(() -> {
+                    try {
+                        new MemberService().checkAndGetExpiredStudentCount();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                
+                // Redirect to Dashboard screen based on role
                 if ("ADMIN".equals(user.getRole())) {
                     switchToAdminDashboard();
                 } else {
@@ -86,17 +96,18 @@ public class LoginController {
 
     private void switchToDashboard() {
         try {
-            // Dong cua so Login hien tai
+            // Close current Login window
             Stage currentStage = (Stage) btnLogin.getScene().getWindow();
             currentStage.close();
 
-            // Khoi tao va hien thi Scene Dashboard
+            // Initialize and show Dashboard Scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/layout/MainLayout.fxml"));
             Parent root = loader.load();
             
             Stage dashboardStage = new Stage();
             dashboardStage.setTitle("Library Management System - Librarian Portal");
             dashboardStage.setScene(new Scene(root, 1280, 800));
+            dashboardStage.setMaximized(true);
             dashboardStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,17 +117,18 @@ public class LoginController {
 
     private void switchToAdminDashboard() {
         try {
-            // Dong cua so Login hien tai
+            // Close current Login window
             Stage currentStage = (Stage) btnLogin.getScene().getWindow();
             currentStage.close();
 
-            // Khoi tao va hien thi Scene Admin Dashboard
+            // Initialize and show Admin Dashboard Scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/layout/AdminLayout.fxml"));
             Parent root = loader.load();
             
             Stage dashboardStage = new Stage();
             dashboardStage.setTitle("Library Management System - Admin Portal");
             dashboardStage.setScene(new Scene(root, 1280, 800));
+            dashboardStage.setMaximized(true);
             dashboardStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,3 +153,4 @@ public class LoginController {
         });
     }
 }
+

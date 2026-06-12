@@ -44,8 +44,8 @@
                 <Region HBox.hgrow="ALWAYS"/>
                 <HBox alignment="CENTER_RIGHT" spacing="15">
                     <VBox alignment="CENTER_RIGHT">
-                        <Label text="Admin User" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                        <Label text="ADMIN" style="-fx-text-fill: -color-fg-muted; -fx-font-size: 11px;"/>
+                        <Label fx:id="lblUserName" text="Librarian User" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                        <Label fx:id="lblUserRole" text="LIBRARIAN" style="-fx-text-fill: -color-fg-muted; -fx-font-size: 11px;"/>
                     </VBox>
                     <Label text="👤" style="-fx-font-size: 30px; -fx-text-fill: -color-accent-fg; -fx-background-color: -color-bg-subtle; -fx-background-radius: 50%; -fx-padding: 0 5px;"/>
                 </HBox>

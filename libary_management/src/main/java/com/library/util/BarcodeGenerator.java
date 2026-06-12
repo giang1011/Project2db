@@ -1,4 +1,4 @@
-package com.library.util;
+﻿package com.library.util;
 
 import java.time.Year;
 import java.util.UUID;
@@ -12,8 +12,9 @@ public class BarcodeGenerator {
      */
     public static String generateBarcode() {
         int currentYear = Year.now().getValue();
-        // Lấy 6 ký tự đầu của UUID làm mã ngẫu nhiên
+        // Get first 6 characters of UUID as random code
         String randomStr = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
         return String.format("BOOK-%d-%s", currentYear, randomStr);
     }
 }
+

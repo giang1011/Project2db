@@ -12,6 +12,7 @@ public class Book {
     private int pageCount;
     private int totalCopies;
     private int availableCopies;
+    private int lostCopies;
     private String coverImage;
 
     public Book() {}
@@ -51,4 +52,7 @@ public class Book {
 
     public String getCoverImage() { return coverImage; }
     public void setCoverImage(String coverImage) { this.coverImage = coverImage; }
+
+    public int getLostCopies() { return lostCopies; }
+    public void setLostCopies(int lostCopies) { this.lostCopies = lostCopies; }
 }

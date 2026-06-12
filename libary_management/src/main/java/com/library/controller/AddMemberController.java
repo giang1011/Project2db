@@ -1,4 +1,4 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import com.library.model.Member;
 import com.library.model.MemberStudentProfile;
@@ -41,33 +41,33 @@ public class AddMemberController implements Initializable {
     private final MemberService memberService;
 
     public AddMemberController() {
-        // Su dung clean constructor injection hoac manual creation
+        // Use clean constructor injection or manual creation
         this.memberService = new MemberService();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Khoi tao gia tri ComboBox
+        // Initialize ComboBox values
         cbMemberType.setItems(FXCollections.observableArrayList("NORMAL", "STUDENT"));
 
-        // Mac dinh Start Date la ngay hien tai
+        // Default Start Date is current date
         dpMembershipStartDate.setValue(LocalDate.now());
         
-        // Lang nghe thay doi Member Type de an/hien Student Info
+        // Listen for Member Type change to toggle Student Info
         cbMemberType.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             boolean isStudent = "STUDENT".equals(newVal);
             vboxStudentInfo.setVisible(isStudent);
             vboxStudentInfo.setManaged(isStudent);
         });
 
-        // Mac dinh vung sinh vien bi an
+        // Student area is hidden by default
         vboxStudentInfo.setVisible(false);
         vboxStudentInfo.setManaged(false);
     }
 
     @FXML
     void handleSave(ActionEvent event) {
-        // Validate bat buoc
+        // Required validation
         if (txtFullName.getText().isEmpty() || 
             cbMemberType.getValue() == null || dpMembershipStartDate.getValue() == null || 
             dpMembershipEndDate.getValue() == null) {
@@ -81,7 +81,7 @@ public class AddMemberController implements Initializable {
             return;
         }
 
-        // Tao doi tuong Member
+        // Create Member object
         Member member = new Member();
         member.setFullName(txtFullName.getText().trim());
         member.setEmail(txtEmail.getText().trim());
@@ -93,11 +93,11 @@ public class AddMemberController implements Initializable {
         member.setMembershipEndDate(dpMembershipEndDate.getValue());
         member.setStatus("ACTIVE");
         
-        // Gia lap thong tin nguoi tao (co the lay tu session)
+        // Mock creator info (can be retrieved from session)
         member.setCreatedBy(1L); 
         member.setUpdatedBy(1L);
 
-        // Tao doi tuong StudentProfile neu la STUDENT
+        // Create StudentProfile object if STUDENT
         MemberStudentProfile profile = null;
         if ("STUDENT".equals(member.getMemberType())) {
             if (txtSchoolName.getText().isEmpty() || txtStudentCode.getText().isEmpty()) {
@@ -111,7 +111,7 @@ public class AddMemberController implements Initializable {
             profile.setStudentVerificationStatus("PENDING");
         }
 
-        // Thuc thi luu tren Background Thread
+        // Execute save on Background Thread
         disableUI(true);
         
         final MemberStudentProfile finalProfile = profile;
@@ -135,9 +135,8 @@ public class AddMemberController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Loi", "Co loi xay ra khi luu: " + saveTask.getException().getMessage());
         });
 
-        Thread thread = new Thread(saveTask);
-        thread.setDaemon(true);
-        thread.start();
+        // Run Task on Virtual Thread (Powerful new feature of Java 21)
+        Thread.ofVirtual().name("SaveMemberVirtualThread").start(saveTask);
     }
 
     @FXML
@@ -165,3 +164,4 @@ public class AddMemberController implements Initializable {
         stage.close();
     }
 }
+

@@ -1,3 +1,4 @@
+@SuppressWarnings("all")
 module com.library { 
     requires javafx.controls;
     requires javafx.fxml;
@@ -6,6 +7,7 @@ module com.library {
     requires java.sql;
     requires com.zaxxer.hikari;
     requires org.slf4j;
+    requires jbcrypt;
 
     opens com.library to javafx.fxml; 
     exports com.library;

@@ -40,7 +40,7 @@ public class FinesManagementController {
 
     private final FineService fineService;
     private final ObservableList<FineDTO> masterData = FXCollections.observableArrayList();
-    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public FinesManagementController() {

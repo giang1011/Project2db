@@ -3,7 +3,6 @@ package com.library.controller;
 import com.library.model.User;
 import com.library.service.UserService;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;

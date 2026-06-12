@@ -58,7 +58,7 @@ public class CheckinController {
     private BigDecimal currentFineAmount = BigDecimal.ZERO;
     private boolean isFinePaid = false;
 
-    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public CheckinController() {

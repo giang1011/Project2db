@@ -1,7 +1,8 @@
-package com.library.repository;
+﻿package com.library.repository;
 
 import com.library.model.User;
 import com.library.util.DatabaseConnection;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,31 +11,33 @@ import java.sql.ResultSet;
 public class UserRepository {
 
     public User findByUsernameAndPassword(String username, String password) throws Exception {
-        // Lay thong tin user tu database 
-        // Luu y: Do yeu cau truyen mat khau truc tiep (PasswordHash) nen hien tai code se so sanh equals() truc tiep chuoi truyen vao
-        // Trong moi truong thuc te, day se la noi su dung BCrypt.checkpw() hoac bam mat khau nguoi dung nhap vao truoc khi so sanh.
-        String query = "SELECT UserID, Username, FullName, Email, Role, Status FROM Users WHERE Username = ? AND PasswordHash = ?";
+        // Use BCrypt.checkpw() to verify password
+        String query = "SELECT UserID, Username, PasswordHash, FullName, Email, Role, Status FROM Users WHERE Username = ?";
         
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
              
             stmt.setString(1, username);
-            stmt.setString(2, password);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    User user = new User();
-                    user.setUserId(rs.getLong("UserID"));
-                    user.setUsername(rs.getString("Username"));
-                    user.setFullName(rs.getString("FullName"));
-                    user.setEmail(rs.getString("Email"));
-                    user.setRole(rs.getString("Role"));
-                    user.setStatus(rs.getString("Status"));
-                    return user;
+                    String storedHash = rs.getString("PasswordHash");
+                    // Check if password matches hash in database
+                    // If storedHash = null (old data error case), return false.
+                    if (storedHash != null && BCrypt.checkpw(password, storedHash)) {
+                        User user = new User();
+                        user.setUserId(rs.getLong("UserID"));
+                        user.setUsername(rs.getString("Username"));
+                        user.setFullName(rs.getString("FullName"));
+                        user.setEmail(rs.getString("Email"));
+                        user.setRole(rs.getString("Role"));
+                        user.setStatus(rs.getString("Status"));
+                        return user;
+                    }
                 }
             }
         }
-        return null; // Khong tim thay user hoac sai mat khau
+        return null; // User not found or incorrect password
     }
 
     public java.util.List<User> findAll() throws Exception {
@@ -62,7 +65,10 @@ public class UserRepository {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, user.getUsername());
-            stmt.setString(2, password); // Hashing should be done here if BCrypt was used
+            
+            // Hash password with jBCrypt before saving
+            String hashedPw = BCrypt.hashpw(password, BCrypt.gensalt());
+            stmt.setString(2, hashedPw);
             stmt.setString(3, user.getFullName());
             if (user.getEmail() != null && !user.getEmail().trim().isEmpty()) {
                 stmt.setString(4, user.getEmail());
@@ -97,7 +103,9 @@ public class UserRepository {
 
             int paramIndex = 6;
             if (updatePassword) {
-                stmt.setString(paramIndex++, newPassword); // Hashing would apply here
+                // Hash password with jBCrypt before updating
+                String hashedPw = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+                stmt.setString(paramIndex++, hashedPw);
             }
             stmt.setLong(paramIndex, user.getUserId());
 
@@ -105,3 +113,4 @@ public class UserRepository {
         }
     }
 }
+

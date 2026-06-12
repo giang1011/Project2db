@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.library.controller.SettingsController"
+      spacing="20" style="-fx-padding: 30; -fx-background-color: transparent;">
+    
+    <Label text="System Settings" styleClass="page-title" />
+    
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        
+        <!-- Table View -->
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10" style="-fx-padding: 0;">
+            <Label text="System Configuration Variables" styleClass="section-title" style="-fx-padding: 20 20 0 20;"/>
+            <TableView fx:id="settingsTable" VBox.vgrow="ALWAYS" style="-fx-border-color: transparent;">
+                <columns>
+                    <TableColumn fx:id="colKey" text="Setting Key" prefWidth="250"/>
+                    <TableColumn fx:id="colValue" text="Value" prefWidth="150"/>
+                    <TableColumn fx:id="colDataType" text="Data Type" prefWidth="120"/>
+                    <TableColumn fx:id="colDescription" text="Description" prefWidth="300"/>
+                    <TableColumn fx:id="colUpdatedAt" text="Last Updated" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+        
+        <!-- Form View -->
+        <VBox styleClass="card" prefWidth="350" spacing="15">
+            <Label text="Edit Setting" styleClass="section-title"/>
+            
+            <VBox spacing="5">
+                <Label text="Setting Key" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="txtSettingKey" styleClass="text-field" editable="false" style="-fx-background-color: #F3F4F6;"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Data Type" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="txtDataType" styleClass="text-field" editable="false" style="-fx-background-color: #F3F4F6;"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Setting Value (*)" style="-fx-font-weight: bold; -fx-text-fill: #1C64F2;"/>
+                <TextField fx:id="txtSettingValue" styleClass="text-field" promptText="Enter value..."/>
+            </VBox>
+            
+            <VBox spacing="5" VBox.vgrow="ALWAYS">
+                <Label text="Description" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="txtDescription" editable="false" wrapText="true" VBox.vgrow="ALWAYS" style="-fx-background-color: #F3F4F6; -fx-control-inner-background: #F3F4F6;"/>
+            </VBox>
+            
+            <Button fx:id="btnSave" text="Save Changes" onAction="#handleSave" maxWidth="Infinity" style="-fx-background-color: #1C64F2; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
+        </VBox>
+        
+    </HBox>
+</VBox>

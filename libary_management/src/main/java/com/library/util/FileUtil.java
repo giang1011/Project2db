@@ -1,4 +1,4 @@
-package com.library.util;
+﻿package com.library.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,13 +23,13 @@ public class FileUtil {
             return null;
         }
 
-        // Tạo thư mục nếu chưa tồn tại
+        // Create directory if not exists
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 
-        // Tạo tên file an toàn với UUID để tránh trùng lặp
+        // Create safe filename with UUID to avoid duplication
         String originalName = sourceFile.getName();
         String extension = "";
         int extIndex = originalName.lastIndexOf(".");
@@ -40,10 +40,11 @@ public class FileUtil {
         String safeFileName = "book_" + UUID.randomUUID().toString().substring(0, 8) + extension;
         Path destinationPath = uploadPath.resolve(safeFileName);
 
-        // Copy file (Ghi đè nếu có)
+        // Copy file (Overwrite if exists)
         Files.copy(sourceFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
-        // Trả về path dạng relative bằng dấu / để lưu vào DB thống nhất
+        // Return relative path with / for consistent DB storage
         return UPLOAD_DIR + safeFileName;
     }
 }
+

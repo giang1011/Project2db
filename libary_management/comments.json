@@ -1,0 +1,132 @@
+﻿[
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  67,
+        "Comment":  "// Cho phép chọn nhiều item"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  80,
+        "Comment":  "// Bỏ background-color cứng để ListCell có thể hiển thị màu khi được chọn"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  141,
+        "Comment":  "// Khi chọn một sách trong danh sách, hiển thị thông tin Ngày Trả của sách đó"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  148,
+        "Comment":  "// Khi người dùng đổi Ngày Trả, cập nhật lại cho sách đang được chọn"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  249,
+        "Comment":  "// Kiểm tra xem đã quét chưa"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  258,
+        "Comment":  "// Lấy và kiểm tra ngày trả"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MainController.java",
+        "LineIndex":  33,
+        "Comment":  "// Mặc định load màn hình Dashboard"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  103,
+        "Comment":  "// Bắt đầu transaction"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  123,
+        "Comment":  "// Thêm vào BorrowItems"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  129,
+        "Comment":  "// Cập nhật BookCopies"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  33,
+        "Comment":  "// Tắt AutoCommit để bắt đầu Transaction"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  36,
+        "Comment":  "// Bước 1: Thêm vào bảng Books, lấy BookID"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  39,
+        "Comment":  "// Bước 2: Thêm liên kết Tác giả vào bảng BookAuthors"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  42,
+        "Comment":  "// Bước 3: Thêm liên kết Thể loại vào bảng BookCategories"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  45,
+        "Comment":  "// Bước 4: Thêm vào bảng BookCopies theo số lượng CopyCount"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  52,
+        "Comment":  "// Generate barcode động cho từng copy"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  57,
+        "Comment":  "// Commit Transaction khi tất cả đều thành công"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  66,
+        "Comment":  "// Nếu có lỗi, Rollback toàn bộ dữ liệu"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  74,
+        "Comment":  "// Quăng lỗi ra cho Controller xử lý hiển thị"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  79,
+        "Comment":  "// Trả lại trạng thái AutoCommit và đóng connection"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  83,
+        "Comment":  "// Cảnh báo log lỗi đóng connection"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\BarcodeGenerator.java",
+        "LineIndex":  14,
+        "Comment":  "// Lấy 6 ký tự đầu của UUID làm mã ngẫu nhiên"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  25,
+        "Comment":  "// Tạo thư mục nếu chưa tồn tại"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  31,
+        "Comment":  "// Tạo tên file an toàn với UUID để tránh trùng lặp"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  42,
+        "Comment":  "// Copy file (Ghi đè nếu có)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  45,
+        "Comment":  "// Trả về path dạng relative bằng dấu / để lưu vào DB thống nhất"
+    }
+]

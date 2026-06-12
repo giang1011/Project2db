@@ -8,17 +8,23 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
+import com.library.util.UserSession;
+import com.library.model.User;
+
 public class MemberService {
     private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
     private final MemberRepository memberRepository;
+    private final ActivityLogService activityLogService;
 
     public MemberService() {
         this.memberRepository = new MemberRepository();
+        this.activityLogService = new ActivityLogService();
     }
 
     // Inject repository if using DI
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+        this.activityLogService = new ActivityLogService();
     }
 
     public void addMember(Member member, MemberStudentProfile studentProfile) throws Exception {
@@ -45,6 +51,10 @@ public class MemberService {
 
         try {
             memberRepository.saveMember(member, studentProfile);
+            long userId = 1;
+            User user = UserSession.getInstance().getLoggedInUser();
+            if (user != null) userId = user.getUserId();
+            activityLogService.logAction(userId, "Add Member", null, "New Member: " + member.getFullName() + " (" + member.getMemberType() + ")");
         } catch (SQLException e) {
             logger.error("Loi khi luu thanh vien vao co so du lieu: ", e);
             throw new Exception("Khong the luu thong tin thanh vien: " + e.getMessage(), e);
@@ -65,6 +75,10 @@ public class MemberService {
             if (!success) {
                 throw new Exception("Khong the cap nhat thong tin doc gia.");
             }
+            long userId = 1;
+            User user = UserSession.getInstance().getLoggedInUser();
+            if (user != null) userId = user.getUserId();
+            activityLogService.logAction(userId, "Update Member", null, "Updated Member: " + member.getFullName());
         } catch (SQLException e) {
             logger.error("Loi khi cap nhat doc gia: ", e);
             throw new Exception("Loi CSDL khi cap nhat: " + e.getMessage(), e);
@@ -77,6 +91,10 @@ public class MemberService {
             if (!success) {
                 throw new Exception("Khong tim thay doc gia de dinh chi.");
             }
+            long userId = 1;
+            User user = UserSession.getInstance().getLoggedInUser();
+            if (user != null) userId = user.getUserId();
+            activityLogService.logAction(userId, "Suspend Member", null, "Suspended Member ID: " + memberId);
         } catch (SQLException e) {
             logger.error("Loi khi dinh chi doc gia: ", e);
             throw new Exception("Loi CSDL khi dinh chi: " + e.getMessage(), e);
@@ -92,6 +110,7 @@ public class MemberService {
             if (!success) {
                 throw new Exception("Gia han that bai.");
             }
+            activityLogService.logAction(processedBy, "Renew Member", null, "Renewed Member ID: " + member.getMemberId() + " for " + months + " months");
         } catch (SQLException e) {
             logger.error("Loi khi gia han doc gia: ", e);
             throw new Exception("Loi CSDL khi gia han: " + e.getMessage(), e);

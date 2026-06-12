@@ -23,6 +23,7 @@
    <!-- Action Bar -->
    <HBox alignment="CENTER_LEFT" spacing="15.0">
       <Button mnemonicParsing="false" onAction="#handleRefresh" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8 15; -fx-cursor: hand; -fx-font-weight: bold;" text="🔄 Refresh" />
+      <Button mnemonicParsing="false" onAction="#handleRecoverLostBook" style="-fx-background-color: #FEF3C7; -fx-border-color: #FDE68A; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8 15; -fx-cursor: hand; -fx-font-weight: bold; -fx-text-fill: #92400E;" text="Khôi phục sách mất" />
       
       <Region HBox.hgrow="ALWAYS" />
       

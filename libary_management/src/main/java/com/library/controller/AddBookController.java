@@ -1,4 +1,4 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import com.library.model.Author;
 import com.library.model.BookDTO;
@@ -65,14 +65,14 @@ public class AddBookController {
 
     @FXML
     public void initialize() {
-        // Cho phép chọn nhiều item
+        // Allow multiple selections
         if (listAuthors != null) {
             listAuthors.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         }
         if (listCategories != null) {
             listCategories.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         }
-        // Listeners cho Chips UI
+        // Listeners for Chips UI
         if (cmbAuthor != null) {
             cmbAuthor.setOnAction(e -> {
                 Author selected = cmbAuthor.getValue();
@@ -433,3 +433,4 @@ public class AddBookController {
         });
     }
 }
+

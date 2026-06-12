@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane alignment="CENTER" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #f8fafc, #cbd5e1);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.LoginController">
+<StackPane alignment="CENTER" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('file:///E:/Project2/uploads/libary/login/anhlogin.jpg'); -fx-background-size: cover; -fx-background-position: center;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.LoginController">
     
     <VBox alignment="CENTER" maxWidth="450" spacing="0">
         <!-- Spacer for the overlapping icon -->
@@ -40,7 +40,7 @@
                 
 
                 
-                <Button fx:id="btnLogin" text="Login" maxWidth="Infinity" prefHeight="45" style="-fx-background-color: #4338CA; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 6px; -fx-cursor: hand;" onAction="#handleLogin"/>
+                <Button fx:id="btnLogin" defaultButton="true" text="Login" maxWidth="Infinity" prefHeight="45" style="-fx-background-color: #4338CA; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 6px; -fx-cursor: hand;" onAction="#handleLogin"/>
                 
 
                 

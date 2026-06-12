@@ -6,11 +6,8 @@ import com.library.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class FineDAO {
-    private static final Logger logger = LoggerFactory.getLogger(FineDAO.class);
 
     public List<FineDTO> getAllFines() throws SQLException {
         String sql = "SELECT f.FineID, f.MemberID, m.MemberCode, m.FullName, " +

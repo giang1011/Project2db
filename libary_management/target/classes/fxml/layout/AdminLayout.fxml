@@ -22,9 +22,11 @@
                     <Label text="PORTAL" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;"/>
                 </VBox>
             </HBox>
-            
             <Button fx:id="btnDashboard" text="  🎛   Dashboard" styleClass="sidebar-btn-dark selected" maxWidth="Infinity" onAction="#showDashboard"/>
             <Button fx:id="btnUsers" text="  👥   User Management" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showUsers"/>
+            <Button fx:id="btnMembers" text="  🪪   Member Management" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showMembers"/>
+            <Button fx:id="btnBooks" text="  📚   Book Management" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showBooks"/>
+            <Button fx:id="btnLogs" text="  📜   Activity Logs" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showLogs"/>
             <Button fx:id="btnSettings" text="  ⚙   Settings" styleClass="sidebar-btn-dark" maxWidth="Infinity" onAction="#showSettings"/>
             
             <Region VBox.vgrow="ALWAYS"/>

@@ -1,4 +1,4 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import com.library.model.Member;
 import com.library.service.MemberService;
@@ -186,15 +186,19 @@ public class MemberManagementController {
                 btnConfirm.getStyleClass().addAll("btn-action", "btn-confirm");
 
                 btnEdit.setText("Sửa");
+                btnEdit.setStyle("-fx-background-color: #e0f2fe; -fx-text-fill: #0284c7; -fx-font-weight: bold; -fx-padding: 6 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-border-color: #bae6fd; -fx-border-radius: 6;");
                 btnEdit.setTooltip(new Tooltip("Sửa thông tin"));
 
                 btnDelete.setText("Khóa");
+                btnDelete.setStyle("-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-font-weight: bold; -fx-padding: 6 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-border-color: #fca5a5; -fx-border-radius: 6;");
                 btnDelete.setTooltip(new Tooltip("Khóa/Đình chỉ"));
 
                 btnRenew.setText("Gia hạn");
+                btnRenew.setStyle("-fx-background-color: #dcfce7; -fx-text-fill: #16a34a; -fx-font-weight: bold; -fx-padding: 6 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-border-color: #86efac; -fx-border-radius: 6;");
                 btnRenew.setTooltip(new Tooltip("Gia hạn thẻ"));
 
                 btnConfirm.setText("Xác nhận");
+                btnConfirm.setStyle("-fx-background-color: #ffedd5; -fx-text-fill: #d97706; -fx-font-weight: bold; -fx-padding: 6 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-border-color: #fdba74; -fx-border-radius: 6;");
                 btnConfirm.setTooltip(new Tooltip("Xác nhận lên NORMAL"));
 
                 pane.setAlignment(javafx.geometry.Pos.CENTER);
@@ -254,7 +258,7 @@ public class MemberManagementController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            // Reload sau khi sua
+            // Reload after editing
             loadData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -332,7 +336,7 @@ public class MemberManagementController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            // Reload lai danh sach doc gia sau khi gia han
+            // Reload member list after renewal
             loadData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -411,7 +415,7 @@ public class MemberManagementController {
         String selectedStatus = cmbStatus.getValue();
 
         filteredList.setPredicate(member -> {
-            // 1. Loc theo tu khoa tim kiem (Ma doc gia hoac ho ten)
+            // 1. Filter by search keyword (Member code or full name)
             if (!searchText.isEmpty()) {
                 boolean matchCode = member.getMemberCode() != null
                         && member.getMemberCode().toLowerCase().contains(searchText);
@@ -422,14 +426,14 @@ public class MemberManagementController {
                 }
             }
 
-            // 2. Loc theo loai doc gia
+            // 2. Filter by member type
             if (selectedType != null && !selectedType.equals("Tất cả")) {
                 if (member.getMemberType() == null || !member.getMemberType().equalsIgnoreCase(selectedType)) {
                     return false;
                 }
             }
 
-            // 3. Loc theo trang thai the
+            // 3. Filter by card status
             if (selectedStatus != null && !selectedStatus.equals("Tất cả")) {
                 if (member.getStatus() == null || !member.getStatus().equalsIgnoreCase(selectedStatus)) {
                     return false;
@@ -450,3 +454,4 @@ public class MemberManagementController {
         });
     }
 }
+

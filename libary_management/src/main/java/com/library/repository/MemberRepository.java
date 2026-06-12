@@ -1,4 +1,4 @@
-package com.library.repository;
+﻿package com.library.repository;
 
 import com.library.model.Member;
 import com.library.model.MemberStudentProfile;
@@ -35,7 +35,7 @@ public class MemberRepository {
             connection = DatabaseConnection.getConnection();
             connection.setAutoCommit(false); // Begin transaction
             
-            // Sinh ma tu dong
+            // Auto-generate code
             String generatedCode = generateMemberCode(connection, member.getMemberType());
             member.setMemberCode(generatedCode);
 
@@ -139,17 +139,17 @@ public class MemberRepository {
                 if (rs.next() && rs.getString(1) != null) {
                     String maxCode = rs.getString(1);
                     try {
-                        // Lay 4 ky tu cuoi cung lam so thu tu
+                        // Get the last 4 characters as sequence number
                         String seqStr = maxCode.substring(maxCode.length() - 4);
                         int nextSeq = Integer.parseInt(seqStr) + 1;
                         return prefix + year + String.format("%04d", nextSeq);
                     } catch (Exception e) {
                         logger.error("Loi khi parse ma thanh vien: " + maxCode, e);
-                        // Neu co loi parse, fallback ve 0001 hoac ban the xu ly tiep
+                        // If parse error, fallback to 0001 or continue processing
                         return prefix + year + "0001";
                     }
                 } else {
-                    // Chua co ma nao trong nam nay
+                    // No code exists for this year
                     return prefix + year + "0001";
                 }
             }
@@ -349,7 +349,7 @@ public class MemberRepository {
                        "DateOfBirth, Address, MembershipStartDate, MembershipEndDate, " +
                        "MaxBorrowBooks, BorrowDurationDays, Status " +
                        "FROM Members " +
-                       "WHERE FullName LIKE ? OR MemberCode LIKE ? " +
+                       "WHERE FullName LIKE ? OR MemberCode LIKE ? OR Phone LIKE ? " +
                        "ORDER BY FullName ASC";
         
         try (Connection conn = DatabaseConnection.getConnection();
@@ -358,6 +358,7 @@ public class MemberRepository {
             String searchPattern = "%" + keyword + "%";
             stmt.setString(1, searchPattern);
             stmt.setString(2, searchPattern);
+            stmt.setString(3, searchPattern);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -389,3 +390,4 @@ public class MemberRepository {
         return members;
     }
 }
+

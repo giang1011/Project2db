@@ -1,0 +1,817 @@
+﻿[
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\ActivityLogController.java",
+        "LineIndex":  33,
+        "Comment":  "// Setup columns using lambda for Java Records compatibility"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\ActivityLogController.java",
+        "LineIndex":  88,
+        "Comment":  "// Use Java 21 Virtual Threads"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  44,
+        "Comment":  "// fallback"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  67,
+        "Comment":  "// Cho phép chọn nhiều item"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  74,
+        "Comment":  "// Listeners cho Chips UI"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  270,
+        "Comment":  "// Validation"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  317,
+        "Comment":  "// Fallback to 1 if user FXML doesn\u0027t have copyCount field"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  324,
+        "Comment":  "// Map UI to DTO"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  339,
+        "Comment":  "// Extract IDs for mapping"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  357,
+        "Comment":  "// Run database operation in background Task (Anti-freeze rule)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  361,
+        "Comment":  "// 1. Process Image upload first"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  368,
+        "Comment":  "// 2. Start full transaction (Books, BookAuthors, BookCategories, BookCopies)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddBookController.java",
+        "LineIndex":  417,
+        "Comment":  "// Fallback (if window mode)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  33,
+        "Comment":  "// Student fields"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  43,
+        "Comment":  "// Su dung clean constructor injection hoac manual creation"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  49,
+        "Comment":  "// Khoi tao gia tri ComboBox"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  52,
+        "Comment":  "// Mac dinh Start Date la ngay hien tai"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  55,
+        "Comment":  "// Lang nghe thay doi Member Type de an/hien Student Info"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  62,
+        "Comment":  "// Mac dinh vung sinh vien bi an"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  69,
+        "Comment":  "// Validate bat buoc"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  83,
+        "Comment":  "// Tao doi tuong Member"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  95,
+        "Comment":  "// Gia lap thong tin nguoi tao (co the lay tu session)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  99,
+        "Comment":  "// Tao doi tuong StudentProfile neu la STUDENT"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  113,
+        "Comment":  "// Thuc thi luu tren Background Thread"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AddMemberController.java",
+        "LineIndex":  137,
+        "Comment":  "// Chay Task tren Virtual Thread (Tinh nang moi rat manh me cua Java 21)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminController.java",
+        "LineIndex":  35,
+        "Comment":  "// Load default screen"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminController.java",
+        "LineIndex":  101,
+        "Comment":  "// Clear user session"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminController.java",
+        "LineIndex":  104,
+        "Comment":  "// Switch to Login screen"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  51,
+        "Comment":  "// Setup table columns using lambdas to cleanly support Java Records"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  58,
+        "Comment":  "// Default date range: 30 days ago to today"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  103,
+        "Comment":  "// Use Java 21 Virtual Threads"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  108,
+        "Comment":  "// Update labels"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  113,
+        "Comment":  "// Update Line Chart"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  122,
+        "Comment":  "// Update Pie Chart"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\AdminDashboardController.java",
+        "LineIndex":  129,
+        "Comment":  "// Update Tables"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckinController.java",
+        "LineIndex":  77,
+        "Comment":  "// Enter"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckinController.java",
+        "LineIndex":  194,
+        "Comment":  "// Triggers calculation"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckinController.java",
+        "LineIndex":  274,
+        "Comment":  "// Refresh list"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  66,
+        "Comment":  "// Usually borrow date is today and fixed"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  80,
+        "Comment":  "// Bỏ background-color cứng để ListCell có thể hiển thị màu khi được chọn"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  81,
+        "Comment":  "// (selected)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  85,
+        "Comment":  "// Image"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  94,
+        "Comment":  "// ignore"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  97,
+        "Comment":  "// placeholder style or image"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  107,
+        "Comment":  "// Details"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  123,
+        "Comment":  "// Spacer"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  127,
+        "Comment":  "// Remove Button"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  141,
+        "Comment":  "// Khi chọn một sách trong danh sách, hiển thị thông tin Ngày Trả của sách đó"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  148,
+        "Comment":  "// Khi người dùng đổi Ngày Trả, cập nhật lại cho sách đang được chọn"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  159,
+        "Comment":  "// Enter key"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  215,
+        "Comment":  "// clear previous"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  249,
+        "Comment":  "// Kiểm tra xem đã quét chưa"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\CheckoutController.java",
+        "LineIndex":  258,
+        "Comment":  "// Lấy và kiểm tra ngày trả"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\EditBookController.java",
+        "LineIndex":  49,
+        "Comment":  "// Fetch description from DB because Book model in table doesn\u0027t have it"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\EditBookController.java",
+        "LineIndex":  126,
+        "Comment":  "// Ghi log"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\EditBookController.java",
+        "LineIndex":  246,
+        "Comment":  "// reload table"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\EditMemberDialogController.java",
+        "LineIndex":  48,
+        "Comment":  "// Validate"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\EditMemberDialogController.java",
+        "LineIndex":  59,
+        "Comment":  "// Disable save button to prevent double submit"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  59,
+        "Comment":  "// Dang nhap thanh cong, luu thong tin vao Session"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  62,
+        "Comment":  "// Silent background scan using Java 21 Virtual Threads"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  71,
+        "Comment":  "// Chuyen huong den man hinh Dashboard theo role"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  98,
+        "Comment":  "// Dong cua so Login hien tai"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  102,
+        "Comment":  "// Khoi tao va hien thi Scene Dashboard"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  119,
+        "Comment":  "// Dong cua so Login hien tai"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\LoginController.java",
+        "LineIndex":  123,
+        "Comment":  "// Khoi tao va hien thi Scene Admin Dashboard"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MainController.java",
+        "LineIndex":  33,
+        "Comment":  "// Mặc định load màn hình Dashboard"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MainController.java",
+        "LineIndex":  106,
+        "Comment":  "// Clear user session"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MainController.java",
+        "LineIndex":  109,
+        "Comment":  "// Switch to Login screen"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MemberManagementController.java",
+        "LineIndex":  260,
+        "Comment":  "// Reload sau khi sua"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MemberManagementController.java",
+        "LineIndex":  338,
+        "Comment":  "// Reload lai danh sach doc gia sau khi gia han"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MemberManagementController.java",
+        "LineIndex":  417,
+        "Comment":  "// 1. Loc theo tu khoa tim kiem (Ma doc gia hoac ho ten)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MemberManagementController.java",
+        "LineIndex":  428,
+        "Comment":  "// 2. Loc theo loai doc gia"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\MemberManagementController.java",
+        "LineIndex":  435,
+        "Comment":  "// 3. Loc theo trang thai the"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  47,
+        "Comment":  "// Them listener vao o nhap so thang de tu dong tinh tien"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  81,
+        "Comment":  "// 1. Kiem tra so thang hop le"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  94,
+        "Comment":  "// 2. Kiem tra so tien"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  107,
+        "Comment":  "// 3. Kiem tra trang thai dinh chi"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  120,
+        "Comment":  "// Thu thu huy quy trinh gia han"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  128,
+        "Comment":  "// Lay thong tin thu thu dang dang nhap tu UserSession"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\RenewMemberDialogController.java",
+        "LineIndex":  136,
+        "Comment":  "// Khoa nut xac nhan tranh double-click"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\SettingsController.java",
+        "LineIndex":  100,
+        "Comment":  "// Only Value is editable"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\SettingsController.java",
+        "LineIndex":  115,
+        "Comment":  "// Validate Data Type"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\SettingsController.java",
+        "LineIndex":  132,
+        "Comment":  "// Reload to get fresh data"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\StudentProfilePopupController.java",
+        "LineIndex":  4,
+        "Comment":  "// Logic initialization"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\UserManagementController.java",
+        "LineIndex":  54,
+        "Comment":  "// Listen for selection changes in table"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\UserManagementController.java",
+        "LineIndex":  100,
+        "Comment":  "// Don\u0027t allow changing username"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\UserManagementController.java",
+        "LineIndex":  133,
+        "Comment":  "// Add new user"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\UserManagementController.java",
+        "LineIndex":  142,
+        "Comment":  "// Update existing user"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\controller\\UserManagementController.java",
+        "LineIndex":  156,
+        "Comment":  "// reload table"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\model\\BookDTO.java",
+        "LineIndex":  13,
+        "Comment":  "// Path: uploads/books/..."
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\model\\BookDTO.java",
+        "LineIndex":  15,
+        "Comment":  "// Many-to-many references"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\model\\BookDTO.java",
+        "LineIndex":  19,
+        "Comment":  "// Copies info"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\model\\BookDTO.java",
+        "LineIndex":  24,
+        "Comment":  "// UserID"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\model\\BookDTO.java",
+        "LineIndex":  26,
+        "Comment":  "// Getters and Setters"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  19,
+        "Comment":  "// Insert a new book into the Books table"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  41,
+        "Comment":  "// Get the newly created BookID"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  52,
+        "Comment":  "// Add the list of authors for the book"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  67,
+        "Comment":  "// Add the list of categories for the book"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  82,
+        "Comment":  "// Add a book copy"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  101,
+        "Comment":  "// Get the list of authors"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  115,
+        "Comment":  "// Get the list of categories"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  129,
+        "Comment":  "// Get the list of publishers"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  143,
+        "Comment":  "// Get the full list of books for the Book Management screen"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  181,
+        "Comment":  "// Quick add author"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  195,
+        "Comment":  "// Quick add category"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  209,
+        "Comment":  "// Quick add publisher"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  223,
+        "Comment":  "// Lock book (Soft delete)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BookDAO.java",
+        "LineIndex":  248,
+        "Comment":  "// Recover a lost book copy by barcode"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  103,
+        "Comment":  "// Bắt đầu transaction"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  123,
+        "Comment":  "// Thêm vào BorrowItems"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  129,
+        "Comment":  "// Cập nhật BookCopies"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  246,
+        "Comment":  "// 1. Return Transactions"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  258,
+        "Comment":  "// 2. Return Items"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  267,
+        "Comment":  "// 3. Update BorrowItem"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  275,
+        "Comment":  "// 4. Update Book Copy"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  284,
+        "Comment":  "// 5. Create Fine if needed"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\BorrowDAO.java",
+        "LineIndex":  306,
+        "Comment":  "// Update PaidAt since we set it paid"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\DashboardDAO.java",
+        "LineIndex":  19,
+        "Comment":  "// 1. Borrowing Books"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\DashboardDAO.java",
+        "LineIndex":  26,
+        "Comment":  "// 2. Overdue Books"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\DashboardDAO.java",
+        "LineIndex":  33,
+        "Comment":  "// 3. Pending Profiles"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\DashboardDAO.java",
+        "LineIndex":  40,
+        "Comment":  "// 4. Unpaid Fines"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  35,
+        "Comment":  "// Begin transaction"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  37,
+        "Comment":  "// Sinh ma tu dong"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  91,
+        "Comment":  "// Commit transaction"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  141,
+        "Comment":  "// Lay 4 ky tu cuoi cung lam so thu tu"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  147,
+        "Comment":  "// Neu co loi parse, fallback ve 0001 hoac ban the xu ly tiep"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  151,
+        "Comment":  "// Chua co ma nao trong nam nay"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\MemberRepository.java",
+        "LineIndex":  314,
+        "Comment":  "// MEMBERSHIP_FEE_NORMAL"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\UserRepository.java",
+        "LineIndex":  13,
+        "Comment":  "// Su dung BCrypt.checkpw() de xac thuc mat khau"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\UserRepository.java",
+        "LineIndex":  24,
+        "Comment":  "// Kiem tra mat khau co khop voi hash trong database khong"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\UserRepository.java",
+        "LineIndex":  25,
+        "Comment":  "// Neu storedHash = null (truong hop du lieu cu bi loi) thi tra ve false."
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\UserRepository.java",
+        "LineIndex":  39,
+        "Comment":  "// Khong tim thay user hoac sai mat khau"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\UserRepository.java",
+        "LineIndex":  68,
+        "Comment":  "// Bam mat khau bang jBCrypt truoc khi luu"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\repository\\UserRepository.java",
+        "LineIndex":  105,
+        "Comment":  "// Bam mat khau bang jBCrypt truoc khi update"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\ActivityLogService.java",
+        "LineIndex":  20,
+        "Comment":  "// Run log action on Virtual Thread to not block the main transaction thread"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  33,
+        "Comment":  "// Tắt AutoCommit để bắt đầu Transaction"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  36,
+        "Comment":  "// Bước 1: Thêm vào bảng Books, lấy BookID"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  39,
+        "Comment":  "// Bước 2: Thêm liên kết Tác giả vào bảng BookAuthors"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  42,
+        "Comment":  "// Bước 3: Thêm liên kết Thể loại vào bảng BookCategories"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  45,
+        "Comment":  "// Bước 4: Thêm vào bảng BookCopies theo số lượng CopyCount"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  52,
+        "Comment":  "// Generate barcode động cho từng copy"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  57,
+        "Comment":  "// Commit Transaction khi tất cả đều thành công"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  60,
+        "Comment":  "// Log action after successful commit"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  66,
+        "Comment":  "// Nếu có lỗi, Rollback toàn bộ dữ liệu"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  74,
+        "Comment":  "// Quăng lỗi ra cho Controller xử lý hiển thị"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  79,
+        "Comment":  "// Trả lại trạng thái AutoCommit và đóng connection"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BookService.java",
+        "LineIndex":  83,
+        "Comment":  "// Cảnh báo log lỗi đóng connection"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  70,
+        "Comment":  "// Set borrow date and due date"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  87,
+        "Comment":  "// Log action"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  133,
+        "Comment":  "// 1. Overdue fine"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  142,
+        "Comment":  "// 2. Condition fine"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  144,
+        "Comment":  "// Flat fee for damaged"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  149,
+        "Comment":  "// Flat fee for lost (since no price in DB)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\BorrowService.java",
+        "LineIndex":  171,
+        "Comment":  "// Log action"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\MemberService.java",
+        "LineIndex":  23,
+        "Comment":  "// Inject repository if using DI"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\MemberService.java",
+        "LineIndex":  30,
+        "Comment":  "// Validation logic"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\service\\MemberService.java",
+        "LineIndex":  36,
+        "Comment":  "// Apply System Settings"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\BarcodeGenerator.java",
+        "LineIndex":  14,
+        "Comment":  "// Lấy 6 ký tự đầu của UUID làm mã ngẫu nhiên"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\DatabaseConnection.java",
+        "LineIndex":  18,
+        "Comment":  "//localhost:1433;databaseName=PublicLibraryDB;encrypt=true;trustServerCertificate=true;\";"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  25,
+        "Comment":  "// Tạo thư mục nếu chưa tồn tại"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  31,
+        "Comment":  "// Tạo tên file an toàn với UUID để tránh trùng lặp"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  42,
+        "Comment":  "// Copy file (Ghi đè nếu có)"
+    },
+    {
+        "File":  "E:\\Project2\\libary_management\\src\\main\\java\\com\\library\\util\\FileUtil.java",
+        "LineIndex":  45,
+        "Comment":  "// Trả về path dạng relative bằng dấu / để lưu vào DB thống nhất"
+    }
+]

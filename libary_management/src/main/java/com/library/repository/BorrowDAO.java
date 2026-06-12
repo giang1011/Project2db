@@ -1,4 +1,4 @@
-package com.library.repository;
+﻿package com.library.repository;
 
 import com.library.model.BorrowItemDTO;
 import com.library.model.Member;
@@ -6,7 +6,6 @@ import com.library.util.DatabaseConnection;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,6 +72,9 @@ public class BorrowDAO {
                     if (rs.getBoolean("IsReferenceOnly")) {
                         throw new SQLException("Đây là sách tham khảo, không được phép mượn về.");
                     }
+                    if ("LOST".equals(rs.getString("CirculationStatus"))) {
+                        throw new SQLException("Cuốn sách này đã bị báo mất (Đã khóa) nên không thể cho mượn.");
+                    }
                     if (!"AVAILABLE".equals(rs.getString("CirculationStatus"))) {
                         throw new SQLException("Sách này đang không sẵn sàng để mượn (Trạng thái: " + rs.getString("CirculationStatus") + ").");
                     }
@@ -99,7 +101,7 @@ public class BorrowDAO {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-            conn.setAutoCommit(false); // Bắt đầu transaction
+            conn.setAutoCommit(false); // Begin transaction
 
             long transactionId = -1;
             try (PreparedStatement stmtTx = conn.prepareStatement(insertTxSql, Statement.RETURN_GENERATED_KEYS)) {
@@ -119,13 +121,13 @@ public class BorrowDAO {
                  PreparedStatement stmtCopy = conn.prepareStatement(updateCopySql)) {
                 
                 for (BorrowItemDTO item : items) {
-                    // Thêm vào BorrowItems
+                    // Insert into BorrowItems
                     stmtItem.setLong(1, transactionId);
                     stmtItem.setLong(2, item.getCopyId());
                     stmtItem.setDate(3, Date.valueOf(item.getDueDate()));
                     stmtItem.addBatch();
 
-                    // Cập nhật BookCopies
+                    // Update BookCopies
                     stmtCopy.setLong(1, item.getCopyId());
                     stmtCopy.addBatch();
                 }
@@ -325,3 +327,4 @@ public class BorrowDAO {
         }
     }
 }
+

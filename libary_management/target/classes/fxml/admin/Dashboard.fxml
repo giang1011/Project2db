@@ -1,30 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.library.controller.AdminDashboardController" 
-      spacing="20" style="-fx-padding: 30; -fx-background-color: transparent;">
-      
-    <HBox alignment="CENTER_LEFT" spacing="20">
-        <Label text="Admin Dashboard" styleClass="page-title"/>
-    </HBox>
-    
-    <HBox spacing="20" alignment="CENTER_LEFT">
-        <VBox style="-fx-background-color: #9333EA; -fx-background-radius: 8px; -fx-padding: 20px; -fx-effect: dropshadow(gaussian, rgba(147,51,234,0.3), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
-            <Label text="System Status" style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 14px; -fx-font-weight: bold;"/>
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Online" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label text="🟢" style="-fx-font-size: 30px; -fx-text-fill: rgba(255,255,255,0.4);"/>
-            </HBox>
-        </VBox>
-    </HBox>
-    
-    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="15" style="-fx-padding: 20;">
-        <Label text="Welcome to Admin Portal" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-        <Label text="Select an option from the sidebar to manage the system." style="-fx-font-size: 14px; -fx-text-fill: #6B7280;"/>
+<ScrollPane fitToWidth="true" style="-fx-background-color: #F3F4F6;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.AdminDashboardController">
+    <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: transparent;">
+        <Label text="15. STATISTICS (ADMIN ONLY)" style="-fx-font-size: 18px; -fx-text-fill: #6B7280; -fx-font-weight: bold;"/>
+        
+        <Label text="Statistics" styleClass="page-title" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+        <!-- Filters -->
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <Label text="From:" style="-fx-text-fill: #6B7280; -fx-padding: 5 0 0 0;"/>
+            <DatePicker fx:id="dpFrom" prefWidth="150" style="-fx-background-radius: 5px;"/>
+            <Label text="To:" style="-fx-text-fill: #6B7280; -fx-padding: 5 0 0 0;"/>
+            <DatePicker fx:id="dpTo" prefWidth="150" style="-fx-background-radius: 5px;"/>
+            <Button text="Filter" fx:id="btnFilter" onAction="#handleFilter" style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-background-radius: 5px; -fx-padding: 5px 25px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <!-- KPI Cards -->
+        <HBox spacing="20">
+            <!-- Total Borrow -->
+            <VBox style="-fx-background-color: #ECFDF5; -fx-background-radius: 10px; -fx-padding: 20px;" HBox.hgrow="ALWAYS">
+                <Label text="Total Borrow" style="-fx-text-fill: #065F46; -fx-font-size: 14px;"/>
+                <Label fx:id="lblTotalBorrow" text="0" style="-fx-text-fill: #059669; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+            </VBox>
+            <!-- Total Returned -->
+            <VBox style="-fx-background-color: #FEF2F2; -fx-background-radius: 10px; -fx-padding: 20px;" HBox.hgrow="ALWAYS">
+                <Label text="Total Returned" style="-fx-text-fill: #991B1B; -fx-font-size: 14px;"/>
+                <Label fx:id="lblTotalReturned" text="0" style="-fx-text-fill: #DC2626; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+            </VBox>
+            <!-- Total Fines -->
+            <VBox style="-fx-background-color: #F5F3FF; -fx-background-radius: 10px; -fx-padding: 20px;" HBox.hgrow="ALWAYS">
+                <Label text="Total Fines" style="-fx-text-fill: #5B21B6; -fx-font-size: 14px;"/>
+                <Label fx:id="lblTotalFines" text="0" style="-fx-text-fill: #7C3AED; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Charts Row -->
+        <HBox spacing="20" VBox.vgrow="ALWAYS">
+            <VBox spacing="10" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                <Label text="Borrowed Books (By Date)" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <LineChart fx:id="lineChart" legendVisible="false" VBox.vgrow="ALWAYS" prefHeight="250">
+                    <xAxis>
+                        <CategoryAxis/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <VBox spacing="10" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                <Label text="Books by Category" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <PieChart fx:id="pieChart" legendSide="RIGHT" VBox.vgrow="ALWAYS" prefHeight="250"/>
+            </VBox>
+        </HBox>
+
+        <!-- Tables Row -->
+        <HBox spacing="20" VBox.vgrow="ALWAYS">
+            <VBox spacing="10" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                <Label text="Top Books" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <TableView fx:id="tblTopBooks" VBox.vgrow="ALWAYS" prefHeight="200" style="-fx-background-color: transparent;">
+                    <columns>
+                        <TableColumn fx:id="colBookName" text="Title" prefWidth="250"/>
+                        <TableColumn fx:id="colBookCount" text="Total Borrowed" prefWidth="120" style="-fx-alignment: CENTER;"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox spacing="10" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 15px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                <Label text="Top Members" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <TableView fx:id="tblTopMembers" VBox.vgrow="ALWAYS" prefHeight="200" style="-fx-background-color: transparent;">
+                    <columns>
+                        <TableColumn fx:id="colMemberName" text="Name" prefWidth="250"/>
+                        <TableColumn fx:id="colMemberCount" text="Total Loans" prefWidth="120" style="-fx-alignment: CENTER;"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
     </VBox>
-</VBox>
+</ScrollPane>

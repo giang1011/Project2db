@@ -1,4 +1,4 @@
-package com.library.service;
+﻿package com.library.service;
 
 import com.library.model.Author;
 import com.library.model.BookDTO;
@@ -11,12 +11,16 @@ import com.library.util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.util.List;
+import com.library.util.UserSession;
+import com.library.model.User;
 
 public class BookService {
     private final BookDAO bookDAO;
+    private final ActivityLogService activityLogService;
 
     public BookService() {
         this.bookDAO = new BookDAO();
+        this.activityLogService = new ActivityLogService();
     }
 
     /**
@@ -27,34 +31,40 @@ public class BookService {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-            // Tắt AutoCommit để bắt đầu Transaction
+            // Disable AutoCommit to begin Transaction
             conn.setAutoCommit(false); 
 
-            // Bước 1: Thêm vào bảng Books, lấy BookID
+            // Step 1: Insert into Books, get BookID
             long bookId = bookDAO.insertBook(conn, bookDTO);
 
-            // Bước 2: Thêm liên kết Tác giả vào bảng BookAuthors
+            // Step 2: Insert Author links into BookAuthors
             bookDAO.insertBookAuthors(conn, bookId, bookDTO.getAuthorIds());
 
-            // Bước 3: Thêm liên kết Thể loại vào bảng BookCategories
+            // Step 3: Insert Category links into BookCategories
             bookDAO.insertBookCategories(conn, bookId, bookDTO.getCategoryIds());
 
-            // Bước 4: Thêm vào bảng BookCopies theo số lượng CopyCount
+            // Step 4: Insert into BookCopies based on CopyCount
             int copyCount = bookDTO.getCopyCount();
             if (copyCount <= 0) {
                 throw new Exception("Số lượng bản sao (CopyCount) phải lớn hơn 0");
             }
             
             for (int i = 0; i < copyCount; i++) {
-                // Generate barcode động cho từng copy
+                // Generate dynamic barcode for each copy
                 String barcode = BarcodeGenerator.generateBarcode();
                 bookDAO.insertBookCopy(conn, bookId, barcode, bookDTO.getShelfLocation(), bookDTO.getAcquisitionDate());
             }
 
-            // Commit Transaction khi tất cả đều thành công
+            // Commit Transaction when all succeed
             conn.commit(); 
+            
+            // Log action after successful commit
+            long userId = 1;
+            User user = UserSession.getInstance().getLoggedInUser();
+            if (user != null) userId = user.getUserId();
+            activityLogService.logAction(userId, "Add Book", null, "New Book: " + bookDTO.getTitle() + " (" + copyCount + " copies)");
         } catch (Exception e) {
-            // Nếu có lỗi, Rollback toàn bộ dữ liệu
+            // If error, Rollback all data
             if (conn != null) {
                 try {
                     conn.rollback(); 
@@ -62,16 +72,16 @@ public class BookService {
                     throw new Exception("Lỗi nghiêm trọng khi rollback transaction: " + rollbackEx.getMessage(), e);
                 }
             }
-            // Quăng lỗi ra cho Controller xử lý hiển thị
+            // Throw error for Controller to display
             throw e;
         } finally {
             if (conn != null) {
                 try {
-                    // Trả lại trạng thái AutoCommit và đóng connection
+                    // Restore AutoCommit state and close connection
                     conn.setAutoCommit(true); 
                     conn.close();
                 } catch (Exception closeEx) {
-                    // Cảnh báo log lỗi đóng connection
+                    // Warning log for connection close error
                 }
             }
         }
@@ -107,4 +117,33 @@ public class BookService {
         if (name == null || name.trim().isEmpty()) throw new Exception("Tên nhà xuất bản không hợp lệ");
         return bookDAO.insertPublisher(name.trim());
     }
+
+    public void lockBook(long bookId) throws Exception {
+        bookDAO.lockBook(bookId);
+        
+        long userId = 1;
+        User user = UserSession.getInstance().getLoggedInUser();
+        if (user != null) userId = user.getUserId();
+        
+        activityLogService.logAction(userId, "Lock Book", null, "Locked Book ID: " + bookId);
+    }
+
+    public boolean recoverLostBookCopy(String barcode) throws Exception {
+        if (barcode == null || barcode.trim().isEmpty()) {
+            throw new Exception("Mã vạch không được để trống");
+        }
+        boolean success = bookDAO.recoverLostBookCopy(barcode.trim());
+        if (success) {
+            long userId = 1;
+            User user = UserSession.getInstance().getLoggedInUser();
+            if (user != null) userId = user.getUserId();
+            activityLogService.logAction(userId, "Recover Book", null, "Recovered lost book with barcode: " + barcode);
+        }
+        return success;
+    }
+
+    public List<com.library.model.BookCopyDTO> getBookCopies(long bookId) throws Exception {
+        return bookDAO.getBookCopies(bookId);
+    }
 }
+

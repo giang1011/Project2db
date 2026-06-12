@@ -1,4 +1,4 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import com.library.model.Member;
 import com.library.service.MemberService;
@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -27,7 +26,6 @@ public class RenewMemberDialogController {
 
     private Member currentMember;
     private final MemberService memberService;
-    private static final long STUDENT_RATE = 5000;
     private static final long NORMAL_RATE = 10000;
 
     public RenewMemberDialogController() {
@@ -47,7 +45,7 @@ public class RenewMemberDialogController {
             txtOldEndDate.setText("N/A");
         }
 
-        // Them listener vao o nhap so thang de tu dong tinh tien
+        // Add listener to month input to auto-calculate price
         txtMonths.textProperty().addListener((observable, oldValue, newValue) -> {
             calculateAmount(newValue);
         });
@@ -81,7 +79,7 @@ public class RenewMemberDialogController {
     private void handleConfirm() {
         String monthsStr = txtMonths.getText();
         
-        // 1. Kiem tra so thang hop le
+        // 1. Validate number of months
         int months = 0;
         try {
             months = Integer.parseInt(monthsStr.trim());
@@ -94,7 +92,7 @@ public class RenewMemberDialogController {
             return;
         }
 
-        // 2. Kiem tra so tien
+        // 2. Validate amount
         BigDecimal amount = BigDecimal.ZERO;
         try {
             amount = new BigDecimal(txtAmount.getText().trim());
@@ -107,7 +105,7 @@ public class RenewMemberDialogController {
             return;
         }
 
-        // 3. Kiem tra trang thai dinh chi
+        // 3. Check suspension status
         if ("SUSPENDED".equalsIgnoreCase(currentMember.getStatus())) {
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Xac nhan");
@@ -120,7 +118,7 @@ public class RenewMemberDialogController {
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get() == btnNo) {
-                // Thu thu huy quy trinh gia han
+                // Librarian cancels renewal process
                 return;
             }
         }
@@ -128,7 +126,7 @@ public class RenewMemberDialogController {
         final int finalMonths = months;
         final BigDecimal finalAmount = amount;
 
-        // Lay thong tin thu thu dang dang nhap tu UserSession
+        // Get current logged-in librarian info from UserSession
         com.library.model.User loggedInUser = UserSession.getInstance().getLoggedInUser();
         if (loggedInUser == null || loggedInUser.getUserId() == null) {
             showAlert(Alert.AlertType.ERROR, "Loi", "Khong tim thay thong tin thu thu dang nhap. Vui long dang nhap lai!");
@@ -136,7 +134,7 @@ public class RenewMemberDialogController {
         }
         final Long processedBy = loggedInUser.getUserId();
 
-        // Khoa nut xac nhan tranh double-click
+        // Disable confirm button to prevent double-click
         btnConfirm.setDisable(true);
 
         Task<Boolean> renewTask = new Task<Boolean>() {
@@ -182,3 +180,4 @@ public class RenewMemberDialogController {
         alert.showAndWait();
     }
 }
+

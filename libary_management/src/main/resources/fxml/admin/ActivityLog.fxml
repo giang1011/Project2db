@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.ActivityLogController" spacing="20" style="-fx-padding: 30; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+    
+    <Label text="System Activity Logs" styleClass="page-title" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="Search by user or action..." prefWidth="300" style="-fx-background-radius: 5px; -fx-padding: 8px;"/>
+        <Button text="Search" onAction="#handleSearch" style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-background-radius: 5px; -fx-padding: 8px 15px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Refresh" onAction="#handleRefresh" style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-background-radius: 5px; -fx-padding: 8px 15px; -fx-font-weight: bold;"/>
+    </HBox>
+    
+    <TableView fx:id="tblLogs" VBox.vgrow="ALWAYS" style="-fx-background-radius: 8px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-background-color: white;">
+        <columns>
+            <TableColumn fx:id="colTime" text="Time" prefWidth="180"/>
+            <TableColumn fx:id="colUser" text="User" prefWidth="180"/>
+            <TableColumn fx:id="colAction" text="Action" prefWidth="250"/>
+            <TableColumn fx:id="colOldValue" text="Old Value" prefWidth="250"/>
+            <TableColumn fx:id="colNewValue" text="New Value" prefWidth="250"/>
+        </columns>
+    </TableView>
+</VBox>

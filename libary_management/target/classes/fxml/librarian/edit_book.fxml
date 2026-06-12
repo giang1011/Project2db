@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox spacing="15" prefWidth="650" prefHeight="550" style="-fx-padding: 20; -fx-background-color: -color-bg-default;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.EditBookController">
+    <Label text="Sửa Thông Tin Sách" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Thông tin chung">
+            <VBox spacing="15" style="-fx-padding: 15;">
+                <GridPane vgap="10" hgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="120"/>
+                        <ColumnConstraints prefWidth="400"/>
+                    </columnConstraints>
+                    
+                    <Label text="Tiêu đề:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtTitle" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Năm xuất bản:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtPublicationYear" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Ngôn ngữ:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtLanguage" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Số trang:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtPageCount" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Mô tả:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="txtDescription" GridPane.rowIndex="4" GridPane.columnIndex="1" prefRowCount="3" wrapText="true"/>
+                </GridPane>
+                
+                <Region VBox.vgrow="ALWAYS" />
+                
+                <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-margin-top: 20px;">
+                    <Button text="Hủy" fx:id="btnCancel" onAction="#handleCancel" styleClass="button-outlined"/>
+                    <Button text="Lưu Cập Nhật" fx:id="btnSave" onAction="#handleSave" styleClass="accent"/>
+                </HBox>
+            </VBox>
+        </Tab>
+        <Tab text="Quản lý bản sao">
+            <VBox spacing="10" style="-fx-padding: 15;">
+                <HBox alignment="CENTER_RIGHT">
+                    <Button text="Tải lại danh sách" onAction="#loadCopies" styleClass="button-outlined"/>
+                </HBox>
+                <TableView fx:id="tableCopies" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colBarcode" text="Mã vạch" prefWidth="120">
+                            <cellValueFactory><PropertyValueFactory property="barcode"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colShelf" text="Vị trí" prefWidth="100">
+                            <cellValueFactory><PropertyValueFactory property="shelfLocation"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colCondition" text="Tình trạng" prefWidth="100">
+                            <cellValueFactory><PropertyValueFactory property="physicalCondition"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colCirculation" text="Trạng thái mượn" prefWidth="120">
+                            <cellValueFactory><PropertyValueFactory property="circulationStatus"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colAction" text="Thao tác" prefWidth="120" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

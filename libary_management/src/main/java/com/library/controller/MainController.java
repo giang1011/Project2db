@@ -1,4 +1,4 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,9 +19,19 @@ public class MainController {
     @FXML private Button btnAddBook;
     @FXML private Button btnManageBooks;
     @FXML private Button btnFines;
+    
+    @FXML private javafx.scene.control.Label lblUserName;
+    @FXML private javafx.scene.control.Label lblUserRole;
+
     @FXML
     public void initialize() {
-        // Mặc định load màn hình Dashboard
+        com.library.model.User loggedInUser = com.library.util.UserSession.getInstance().getLoggedInUser();
+        if (loggedInUser != null) {
+            lblUserName.setText(loggedInUser.getFullName() != null && !loggedInUser.getFullName().trim().isEmpty() ? loggedInUser.getFullName() : loggedInUser.getUsername());
+            lblUserRole.setText(loggedInUser.getRole() != null ? loggedInUser.getRole().toUpperCase() : "LIBRARIAN");
+        }
+
+        // Default load Dashboard screen
         showDashboard(null);
     }
 
@@ -108,6 +118,7 @@ public class MainController {
             Stage loginStage = new Stage();
             loginStage.setTitle("Library Management System - Login");
             loginStage.setScene(new javafx.scene.Scene(root, 800, 600));
+            loginStage.setMaximized(true);
             loginStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -115,3 +126,4 @@ public class MainController {
         }
     }
 }
+

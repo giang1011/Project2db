@@ -2,7 +2,6 @@ package com.library.controller;
 
 import com.library.model.Book;
 import com.library.service.BookService;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -120,6 +119,12 @@ public class BookManagementController {
                         if (book.getAvailableCopies() > 0) {
                             statusLabel.setText("Còn sách");
                             statusLabel.setStyle(statusLabel.getStyle() + "-fx-background-color: #D1FAE5; -fx-text-fill: #065F46;");
+                        } else if (book.getTotalCopies() > 0 && book.getLostCopies() == book.getTotalCopies()) {
+                            statusLabel.setText("Lost");
+                            statusLabel.setStyle(statusLabel.getStyle() + "-fx-background-color: #E5E7EB; -fx-text-fill: #374151;");
+                        } else if (book.getLostCopies() > 0 && book.getAvailableCopies() == 0) {
+                            statusLabel.setText("Lost / Đang mượn");
+                            statusLabel.setStyle(statusLabel.getStyle() + "-fx-background-color: #FEF3C7; -fx-text-fill: #B45309;");
                         } else {
                             statusLabel.setText("Đang mượn hết");
                             statusLabel.setStyle(statusLabel.getStyle() + "-fx-background-color: #FEE2E2; -fx-text-fill: #991B1B;");
@@ -133,21 +138,14 @@ public class BookManagementController {
         colActions.setCellFactory(column -> {
             return new TableCell<Book, Void>() {
                 private final Button btnEdit = new Button("Sửa");
-                private final Button btnDelete = new Button("Xóa");
-                private final HBox pane = new HBox(5, btnEdit, btnDelete);
+                private final HBox pane = new HBox(5, btnEdit);
 
                 {
                     btnEdit.getStyleClass().addAll("button-outlined", "accent");
-                    btnDelete.getStyleClass().addAll("button-outlined", "danger");
                     
                     btnEdit.setOnAction(e -> {
                         Book book = getTableView().getItems().get(getIndex());
-                        // TODO: Implement edit logic
-                    });
-                    
-                    btnDelete.setOnAction(e -> {
-                        Book book = getTableView().getItems().get(getIndex());
-                        // TODO: Implement delete logic
+                        openEditDialog(book);
                     });
                 }
 
@@ -242,5 +240,76 @@ public class BookManagementController {
             }
         }
         tableBooks.setItems(filteredData);
+    }
+
+    private void openEditDialog(Book book) {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/librarian/edit_book.fxml"));
+            javafx.scene.Parent root = loader.load();
+            
+            EditBookController controller = loader.getController();
+            controller.initData(book, this);
+            
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Sửa thông tin sách - " + book.getIsbn());
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText("Không thể mở cửa sổ sửa sách");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleRecoverLostBook(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Khôi phục sách báo mất");
+        dialog.setHeaderText("Nhập mã vạch (Barcode) của cuốn sách bạn vừa tìm thấy:");
+        dialog.setContentText("Mã vạch:");
+
+        dialog.showAndWait().ifPresent(barcode -> {
+            if (!barcode.trim().isEmpty()) {
+                Task<Boolean> recoverTask = new Task<>() {
+                    @Override
+                    protected Boolean call() throws Exception {
+                        return bookService.recoverLostBookCopy(barcode.trim());
+                    }
+
+                    @Override
+                    protected void succeeded() {
+                        if (getValue()) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Thành công");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Đã khôi phục thành công mã vạch: " + barcode);
+                            alert.showAndWait();
+                            loadBooks();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Thất bại");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Không tìm thấy mã vạch này hoặc cuốn sách không ở trạng thái LOST.");
+                            alert.showAndWait();
+                        }
+                    }
+
+                    @Override
+                    protected void failed() {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Lỗi");
+                        alert.setHeaderText("Không thể khôi phục sách");
+                        alert.setContentText(getException().getMessage());
+                        alert.showAndWait();
+                    }
+                };
+                new Thread(recoverTask).start();
+            }
+        });
     }
 }

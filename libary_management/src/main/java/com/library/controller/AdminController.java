@@ -20,6 +20,9 @@ public class AdminController {
     @FXML private StackPane contentArea;
     @FXML private Button btnDashboard;
     @FXML private Button btnUsers;
+    @FXML private Button btnMembers;
+    @FXML private Button btnBooks;
+    @FXML private Button btnLogs;
     @FXML private Button btnSettings;
     @FXML private Label lblAdminName;
 
@@ -47,14 +50,35 @@ public class AdminController {
     }
 
     @FXML
+    private void showBooks(ActionEvent event) {
+        setActiveButton(btnBooks);
+        loadScreen("/fxml/manage_books.fxml");
+    }
+
+    @FXML
+    private void showMembers(ActionEvent event) {
+        setActiveButton(btnMembers);
+        loadScreen("/fxml/librarian/MemberManagement.fxml");
+    }
+
+    @FXML
+    private void showLogs(ActionEvent event) {
+        setActiveButton(btnLogs);
+        loadScreen("/fxml/admin/ActivityLog.fxml");
+    }
+
+    @FXML
     private void showSettings(ActionEvent event) {
         setActiveButton(btnSettings);
-        // loadScreen("/fxml/admin/Settings.fxml");
+        loadScreen("/fxml/admin/Settings.fxml");
     }
 
     private void setActiveButton(Button activeButton) {
         if (btnDashboard != null) btnDashboard.getStyleClass().remove("selected");
         if (btnUsers != null) btnUsers.getStyleClass().remove("selected");
+        if (btnMembers != null) btnMembers.getStyleClass().remove("selected");
+        if (btnBooks != null) btnBooks.getStyleClass().remove("selected");
+        if (btnLogs != null) btnLogs.getStyleClass().remove("selected");
         if (btnSettings != null) btnSettings.getStyleClass().remove("selected");
 
         if (activeButton != null && !activeButton.getStyleClass().contains("selected")) {
@@ -89,6 +113,7 @@ public class AdminController {
             Stage loginStage = new Stage();
             loginStage.setTitle("Library Management System - Login");
             loginStage.setScene(new Scene(root, 800, 600));
+            loginStage.setMaximized(true);
             loginStage.show();
         } catch (IOException e) {
             e.printStackTrace();

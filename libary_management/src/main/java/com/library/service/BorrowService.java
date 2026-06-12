@@ -11,14 +11,16 @@ import java.util.List;
 public class BorrowService {
 
     private final BorrowDAO borrowDAO;
+    private final ActivityLogService activityLogService;
 
     public BorrowService() {
         this.borrowDAO = new BorrowDAO();
+        this.activityLogService = new ActivityLogService();
     }
 
     public Member validateAndGetMember(String memberCode) throws SQLException {
         if (memberCode == null || memberCode.trim().isEmpty()) {
-            throw new IllegalArgumentException("Mã hoặc tên độc giả không được để trống.");
+            throw new IllegalArgumentException("Mã hoặc SĐT độc giả không được để trống.");
         }
         
         Member member = borrowDAO.findMemberByCode(memberCode.trim());
@@ -27,9 +29,9 @@ public class BorrowService {
                 MemberRepository memberRepo = new MemberRepository();
                 List<Member> results = memberRepo.searchMembers(memberCode.trim());
                 if (results.isEmpty()) {
-                    throw new SQLException("Không tìm thấy độc giả với mã hoặc tên: " + memberCode);
+                    throw new SQLException("Không tìm thấy độc giả với mã hoặc SĐT: " + memberCode);
                 } else if (results.size() > 1) {
-                    throw new SQLException("Có nhiều độc giả trùng tên '" + memberCode + "'. Vui lòng nhập chính xác Mã độc giả (VD: STU20240001).");
+                    throw new SQLException("Có nhiều độc giả trùng SĐT '" + memberCode + "'. Vui lòng nhập chính xác Mã độc giả (VD: STU20240001).");
                 } else {
                     member = results.get(0);
                 }
@@ -82,6 +84,9 @@ public class BorrowService {
         }
         
         borrowDAO.checkoutBooks(memberId, userId, items);
+        
+        // Log action
+        activityLogService.logAction(userId, "Checkout Books", null, "Member ID: " + memberId + ", Total books: " + items.size());
     }
 
     public com.library.model.ReturnItemDTO findActiveBorrowItemByBarcode(String barcode) throws SQLException {
@@ -97,7 +102,7 @@ public class BorrowService {
 
     public List<com.library.model.ReturnItemDTO> findActiveBorrowItemsByMemberCode(String memberCode) throws SQLException {
         if (memberCode == null || memberCode.trim().isEmpty()) {
-            throw new IllegalArgumentException("Mã hoặc tên độc giả không được để trống.");
+            throw new IllegalArgumentException("Mã hoặc SĐT độc giả không được để trống.");
         }
         
         String exactCode = memberCode.trim();
@@ -107,9 +112,9 @@ public class BorrowService {
                 MemberRepository memberRepo = new MemberRepository();
                 List<Member> results = memberRepo.searchMembers(exactCode);
                 if (results.isEmpty()) {
-                    throw new SQLException("Không tìm thấy độc giả với mã hoặc tên: " + memberCode);
+                    throw new SQLException("Không tìm thấy độc giả với mã hoặc SĐT: " + memberCode);
                 } else if (results.size() > 1) {
-                    throw new SQLException("Có nhiều độc giả trùng tên '" + memberCode + "'. Vui lòng nhập chính xác Mã độc giả.");
+                    throw new SQLException("Có nhiều độc giả trùng SĐT '" + memberCode + "'. Vui lòng nhập chính xác Mã độc giả.");
                 } else {
                     exactCode = results.get(0).getMemberCode();
                 }
@@ -163,6 +168,9 @@ public class BorrowService {
             throw new IllegalStateException("Không có thông tin người dùng đang đăng nhập.");
         }
         borrowDAO.checkinBook(item, userId, condition, notes, fineAmount, isFinePaid);
+        
+        // Log action
+        activityLogService.logAction(userId, "Checkin Book", null, "Returned Book Barcode: " + item.getBarcode() + ", Condition: " + condition);
     }
 
     public static class FineCalculationResult {

@@ -1,4 +1,4 @@
-package com.library.controller;
+﻿package com.library.controller;
 
 import com.library.model.BorrowItemDTO;
 import com.library.model.Member;
@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
@@ -79,7 +78,7 @@ public class CheckoutController {
                 } else {
                     javafx.scene.layout.HBox hbox = new javafx.scene.layout.HBox(15);
                     hbox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-                    // Bỏ background-color cứng để ListCell có thể hiển thị màu khi được chọn
+                    // Remove hardcoded background-color so ListCell can display selection color
                     // (selected)
                     hbox.setStyle(
                             "-fx-padding: 10; -fx-background-radius: 5; -fx-border-color: -color-border-default; -fx-border-radius: 5;");
@@ -140,14 +139,14 @@ public class CheckoutController {
             }
         });
 
-        // Khi chọn một sách trong danh sách, hiển thị thông tin Ngày Trả của sách đó
+        // When selecting a book in the list, display its Due Date
         listBorrowBooks.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 dpDueDate.setValue(newVal.getDueDate());
             }
         });
 
-        // Khi người dùng đổi Ngày Trả, cập nhật lại cho sách đang được chọn
+        // When the user changes the Due Date, update the selected book
         dpDueDate.valueProperty().addListener((obs, oldVal, newVal) -> {
             BorrowItemDTO selected = listBorrowBooks.getSelectionModel().getSelectedItem();
             if (selected != null && newVal != null) {
@@ -248,7 +247,7 @@ public class CheckoutController {
             return;
         }
 
-        // Kiểm tra xem đã quét chưa
+        // Check if already scanned
         for (BorrowItemDTO item : borrowItems) {
             if (item.getBarcode().equalsIgnoreCase(barcode.trim())) {
                 showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Sách này đã có trong danh sách.");
@@ -257,7 +256,7 @@ public class CheckoutController {
             }
         }
 
-        // Lấy và kiểm tra ngày trả
+        // Get and validate due date
         LocalDate dueDate = dpDueDate.getValue();
         if (dueDate == null || dueDate.isBefore(LocalDate.now())) {
             showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Vui lòng chọn ngày trả hợp lệ (từ hôm nay trở đi).");
@@ -384,3 +383,4 @@ public class CheckoutController {
         }
     }
 }
+

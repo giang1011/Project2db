@@ -12,13 +12,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.List;
 import com.library.model.Book;
 
 public class BookDAO {
 
-    // Thêm sách mới vào bảng Books
+    // Insert a new book into the Books table
     public long insertBook(Connection conn, BookDTO bookDTO) throws Exception {
         String query = "INSERT INTO Books (ISBN, Title, PublisherID, PublicationYear, Language, Description, PageCount, CoverImage, CreatedBy) " +
                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -40,7 +39,7 @@ public class BookDAO {
 
             stmt.executeUpdate();
 
-            // Lấy BookID vừa được tạo
+            // Get the newly created BookID
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     return generatedKeys.getLong(1);
@@ -51,7 +50,7 @@ public class BookDAO {
         }
     }
 
-    // Thêm danh sách tác giả cho sách
+    // Add the list of authors for the book
     public void insertBookAuthors(Connection conn, long bookId, List<Integer> authorIds) throws Exception {
         if (authorIds == null || authorIds.isEmpty()) return;
         
@@ -66,7 +65,7 @@ public class BookDAO {
         }
     }
 
-    // Thêm danh sách thể loại cho sách
+    // Add the list of categories for the book
     public void insertBookCategories(Connection conn, long bookId, List<Integer> categoryIds) throws Exception {
         if (categoryIds == null || categoryIds.isEmpty()) return;
 
@@ -81,7 +80,7 @@ public class BookDAO {
         }
     }
 
-    // Thêm bản sao của sách (Book Copy)
+    // Add a book copy
     public void insertBookCopy(Connection conn, long bookId, String barcode, String shelfLocation, LocalDate acquisitionDate) throws Exception {
         String query = "INSERT INTO BookCopies (BookID, Barcode, ShelfLocation, AcquisitionDate, PhysicalCondition, CirculationStatus, IsReferenceOnly, IsDeleted) " +
                        "VALUES (?, ?, ?, ?, 'GOOD', 'AVAILABLE', 0, 0)";
@@ -100,7 +99,7 @@ public class BookDAO {
         }
     }
 
-    // Lấy danh sách tác giả
+    // Get the list of authors
     public List<Author> getAllAuthors() throws Exception {
         List<Author> list = new ArrayList<>();
         String query = "SELECT AuthorID, AuthorName FROM Authors ORDER BY AuthorName";
@@ -114,7 +113,7 @@ public class BookDAO {
         return list;
     }
 
-    // Lấy danh sách thể loại
+    // Get the list of categories
     public List<Category> getAllCategories() throws Exception {
         List<Category> list = new ArrayList<>();
         String query = "SELECT CategoryID, CategoryName FROM Categories ORDER BY CategoryName";
@@ -128,7 +127,7 @@ public class BookDAO {
         return list;
     }
 
-    // Lấy danh sách nhà xuất bản
+    // Get the list of publishers
     public List<Publisher> getAllPublishers() throws Exception {
         List<Publisher> list = new ArrayList<>();
         String query = "SELECT PublisherID, PublisherName FROM Publishers ORDER BY PublisherName";
@@ -142,7 +141,7 @@ public class BookDAO {
         return list;
     }
 
-    // Lấy danh sách sách đầy đủ cho màn hình Quản lý sách
+    // Get the full list of books for the Book Management screen
     public List<Book> getAllBooksDetails() throws Exception {
         List<Book> list = new ArrayList<>();
         String query = 
@@ -150,7 +149,8 @@ public class BookDAO {
             "(SELECT STRING_AGG(a.AuthorName, ', ') FROM BookAuthors ba JOIN Authors a ON ba.AuthorID = a.AuthorID WHERE ba.BookID = b.BookID) AS Authors, " +
             "(SELECT STRING_AGG(c.CategoryName, ', ') FROM BookCategories bc JOIN Categories c ON bc.CategoryID = c.CategoryID WHERE bc.BookID = b.BookID) AS Categories, " +
             "(SELECT COUNT(*) FROM BookCopies bc WHERE bc.BookID = b.BookID AND bc.IsDeleted = 0) AS TotalCopies, " +
-            "(SELECT COUNT(*) FROM BookCopies bc WHERE bc.BookID = b.BookID AND bc.CirculationStatus = 'AVAILABLE' AND bc.IsDeleted = 0) AS AvailableCopies " +
+            "(SELECT COUNT(*) FROM BookCopies bc WHERE bc.BookID = b.BookID AND bc.CirculationStatus = 'AVAILABLE' AND bc.IsDeleted = 0) AS AvailableCopies, " +
+            "(SELECT COUNT(*) FROM BookCopies bc WHERE bc.BookID = b.BookID AND bc.CirculationStatus = 'LOST' AND bc.IsDeleted = 0) AS LostCopies " +
             "FROM Books b " +
             "LEFT JOIN Publishers p ON b.PublisherID = p.PublisherID " +
             "WHERE b.IsDeleted = 0 " +
@@ -173,12 +173,13 @@ public class BookDAO {
                 book.setCategories(rs.getString("Categories"));
                 book.setTotalCopies(rs.getInt("TotalCopies"));
                 book.setAvailableCopies(rs.getInt("AvailableCopies"));
+                book.setLostCopies(rs.getInt("LostCopies"));
                 list.add(book);
             }
         }
         return list;
     }
-    // Thêm tác giả nhanh
+    // Quick add author
     public Author insertAuthor(String authorName) throws Exception {
         String query = "INSERT INTO Authors (AuthorName) VALUES (?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -192,7 +193,7 @@ public class BookDAO {
         throw new Exception("Không thể thêm Tác giả");
     }
 
-    // Thêm thể loại nhanh
+    // Quick add category
     public Category insertCategory(String categoryName) throws Exception {
         String query = "INSERT INTO Categories (CategoryName) VALUES (?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -206,7 +207,7 @@ public class BookDAO {
         throw new Exception("Không thể thêm Thể loại");
     }
 
-    // Thêm nhà xuất bản nhanh
+    // Quick add publisher
     public Publisher insertPublisher(String publisherName) throws Exception {
         String query = "INSERT INTO Publishers (PublisherName) VALUES (?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -218,5 +219,67 @@ public class BookDAO {
             }
         }
         throw new Exception("Không thể thêm Nhà xuất bản");
+    }
+
+    // Lock book (Soft delete)
+    public void lockBook(long bookId) throws Exception {
+        String updateBooks = "UPDATE Books SET IsDeleted = 1 WHERE BookID = ?";
+        String updateCopies = "UPDATE BookCopies SET IsDeleted = 1 WHERE BookID = ?";
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            conn.setAutoCommit(false);
+            try (PreparedStatement stmt1 = conn.prepareStatement(updateBooks);
+                 PreparedStatement stmt2 = conn.prepareStatement(updateCopies)) {
+                
+                stmt1.setLong(1, bookId);
+                stmt1.executeUpdate();
+                
+                stmt2.setLong(1, bookId);
+                stmt2.executeUpdate();
+                
+                conn.commit();
+            } catch (Exception e) {
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        }
+    }
+
+    // Recover a lost book copy by barcode
+    public boolean recoverLostBookCopy(String barcode) throws Exception {
+        String query = "UPDATE BookCopies SET CirculationStatus = 'AVAILABLE', PhysicalCondition = 'GOOD' " +
+                       "WHERE Barcode = ? AND CirculationStatus = 'LOST'";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, barcode);
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public List<com.library.model.BookCopyDTO> getBookCopies(long bookId) throws Exception {
+        List<com.library.model.BookCopyDTO> list = new ArrayList<>();
+        String query = "SELECT CopyID, BookID, Barcode, ShelfLocation, PhysicalCondition, CirculationStatus, AcquisitionDate " +
+                       "FROM BookCopies WHERE BookID = ? AND IsDeleted = 0 ORDER BY CopyID ASC";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setLong(1, bookId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    com.library.model.BookCopyDTO copy = new com.library.model.BookCopyDTO();
+                    copy.setCopyId(rs.getLong("CopyID"));
+                    copy.setBookId(rs.getLong("BookID"));
+                    copy.setBarcode(rs.getString("Barcode"));
+                    copy.setShelfLocation(rs.getString("ShelfLocation"));
+                    copy.setPhysicalCondition(rs.getString("PhysicalCondition"));
+                    copy.setCirculationStatus(rs.getString("CirculationStatus"));
+                    if (rs.getDate("AcquisitionDate") != null) {
+                        copy.setAcquisitionDate(rs.getDate("AcquisitionDate").toLocalDate());
+                    }
+                    list.add(copy);
+                }
+            }
+        }
+        return list;
     }
 }

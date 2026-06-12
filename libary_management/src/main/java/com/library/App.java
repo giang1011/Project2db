@@ -26,6 +26,7 @@ public class App extends Application {
 
             stage.setTitle("Library Management System - Login");
             stage.setScene(scene);
+            stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {

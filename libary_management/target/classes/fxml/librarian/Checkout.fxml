@@ -22,7 +22,7 @@
             <Label text="Select Member" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
             
             <HBox spacing="10" alignment="CENTER_LEFT">
-                <TextField fx:id="txtMemberCode" promptText="Scan Barcode or enter code..." HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/>
+                <TextField fx:id="txtMemberCode" promptText="Enter member code or phone..." HBox.hgrow="ALWAYS" style="-fx-background-radius: 5;"/>
                 <Button text="Search" fx:id="btnSearchMember" styleClass="accent" />
             </HBox>
             
